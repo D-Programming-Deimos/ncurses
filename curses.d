@@ -31,19 +31,19 @@
  *     and: Eric S. Raymond <esr@snark.thyrsus.com>                         *
  *     and: Thomas E. Dickey                        1996-on                 *
  ****************************************************************************/
+
 /* $Id: curses.h.in,v 1.215 2010/04/29 09:46:38 tom Exp $ */
-
 module curses;
-
-
 
 /*
  * We need FILE, etc.  Include this before checking any feature symbols.
  */
-import std.c.stddef;
 import std.c.stdio;
-import std.c.stdarg;
-//public import unctrl;
+import std.c.stddef;    /* we want wchar_t */
+import std.c.stdarg;    /* we need va_list */
+
+//#include <ncursesw/unctrl.h>
+public import unctrl;
 
 //TODO check if needed... I don't have a windows machine...
 version(Win32)
@@ -76,19 +76,58 @@ alias   chtype  attr_t;
 alias   int     OPTIONS;
 alias   void    SCREEN;
 
-/* global variables */
-__gshared WINDOW*   stdscr;
-__gshared WINDOW*   curscr;
-__gshared WINDOW*   newscr;
-__gshared char      ttytype[];
-__gshared int       COLORS;
-__gshared int       COLOR_PAIRS;
-__gshared int       LINES;
-__gshared int       COLS;
-__gshared int       TABSIZE;
-__gshared int       ESCDELAY;
-__gshared chtype    acs_map[256];
 
+/* attributes */
+//Thank you, Dejan Lekic, dejan.lekic @ (gmail.com || kcl.ac.uk)
+immutable ubyte NCURSES_ATTR_SHIFT = 8;
+
+chtype NCURSES_BITS(uint mask, ubyte shift)
+{   return (mask << (shift + NCURSES_ATTR_SHIFT));  }
+
+immutable enum :chtype
+{
+    A_NORMAL        = (1u - 1u),
+    A_ATTRIBUTES    = NCURSES_BITS(~(1u - 1u),0),
+    A_CHARTEXT      = (NCURSES_BITS(1u,0) - 1u),
+    A_COLOR         = NCURSES_BITS(((1u) << 8) - 1u,0),
+    A_STANDOUT      = NCURSES_BITS(1u,8),
+    A_UNDERLINE     = NCURSES_BITS(1u,9),
+    A_REVERSE       = NCURSES_BITS(1u,10),
+    A_BLINK         = NCURSES_BITS(1u,11),
+    A_DIM           = NCURSES_BITS(1u,12),
+    A_BOLD          = NCURSES_BITS(1u,13),
+    A_ALTCHARSET    = NCURSES_BITS(1u,14),
+    A_INVIS         = NCURSES_BITS(1u,15),
+    A_PROTECT       = NCURSES_BITS(1u,16),
+    A_HORIZONTAL    = NCURSES_BITS(1u,17),
+    A_LEFT          = NCURSES_BITS(1u,18),
+    A_LOW           = NCURSES_BITS(1u,19),
+    A_RIGHT         = NCURSES_BITS(1u,20),
+    A_TOP           = NCURSES_BITS(1u,21),
+    A_VERTICAL      = NCURSES_BITS(1u,22),
+
+/*
+ * X/Open attributes.  In the ncurses implementation, they are identical to the
+ * A_ attributes.
+ */
+    WA_ATTRIBUTES   = A_ATTRIBUTES,
+    WA_NORMAL       = A_NORMAL,
+    WA_STANDOUT     = A_STANDOUT,
+    WA_UNDERLINE    = A_UNDERLINE,
+    WA_REVERSE      = A_REVERSE,
+    WA_BLINK        = A_BLINK,
+    WA_DIM          = A_DIM,
+    WA_BOLD         = A_BOLD,
+    WA_ALTCHARSET   = A_ALTCHARSET,
+    WA_INVIS        = A_INVIS,
+    WA_PROTECT      = A_PROTECT,
+    WA_HORIZONTAL   = A_HORIZONTAL,
+    WA_LEFT         = A_LEFT,
+    WA_LOW          = A_LOW,
+    WA_RIGHT        = A_RIGHT,
+    WA_TOP          = A_TOP,
+    WA_VERTICAL     = A_VERTICAL
+}
 
 
 immutable enum :chtype
@@ -103,6 +142,21 @@ immutable enum :chtype
     COLOR_CYAN    = 6,
     COLOR_WHITE   = 7
 }
+
+
+/* global variables */
+__gshared WINDOW*   stdscr;
+__gshared WINDOW*   curscr;
+__gshared WINDOW*   newscr;
+__gshared char      ttytype[];
+__gshared int       COLORS;
+__gshared int       COLOR_PAIRS;
+__gshared int       LINES;
+__gshared int       COLS;
+__gshared int       TABSIZE;
+__gshared int       ESCDELAY;
+__gshared chtype    acs_map[256];
+
 
 
 /* acs symbols */
@@ -244,6 +298,20 @@ immutable int _NOCHANGE = -1;
  */
 immutable int _NEWINDEX = -1;
 
+/*
+ * cchar_t stores an array of CCHARW_MAX wide characters.  The first is
+ * normally a spacing character.  The others are non-spacing.  If those
+ * (spacing and nonspacing) do not fill the array, a null L'\0' follows.
+ * Otherwise, a null is assumed to follow when extracting via getcchar().
+ */
+immutable size_t CCHARW_MAX = 5;
+
+struct cchar_t
+{
+  attr_t attr;
+  wchar_t chars[CCHARW_MAX];
+}
+
 struct  WINDOW
 {
     short   cury, curx;
@@ -282,19 +350,32 @@ struct  WINDOW
     cchar_t bkgrnd;
 }
 
-/*
- * cchar_t stores an array of CCHARW_MAX wide characters.  The first is
- * normally a spacing character.  The others are non-spacing.  If those
- * (spacing and nonspacing) do not fill the array, a null L'\0' follows.
- * Otherwise, a null is assumed to follow when extracting via getcchar().
- */
-immutable size_t CCHARW_MAX = 5;
-
-struct cchar_t
+struct _nc_event
 {
-  attr_t attr;
-  wchar_t chars[CCHARW_MAX];
+    int type;
+    union data
+    {
+        long timeout_msec;  /* _NC_EVENT_TIMEOUT_MSEC */
+        struct fev
+        {
+            uint    flags;
+            int     fd;
+            uint    result;
+        }              /* _NC_EVENT_FILE */
+    }
 }
+
+
+struct _nc_eventlist
+{
+    int count;
+    int result_flags;   /* _NC_EVENT_TIMEOUT_MSEC or _NC_EVENT_FILE_READABLE */
+    _nc_event* events[1];
+}
+
+int wgetch_events(WINDOW* win, _nc_eventlist* nc);   /* experimental */
+int wgetnstr_events(WINDOW* win, char* str, int one, _nc_eventlist* nc);/* experimental */
+
 
 /*
  * Function prototypes.  This is the complete X/Open Curses list of required
@@ -921,59 +1002,6 @@ void getbegyx(U:WINDOW*, T: int)(U win, ref T y, ref T x)
   x = getbegx(win);
 }
 
-
-/* attributes */
-
-//Thank you, Dejan Lekic, dejan.lekic @ (gmail.com || kcl.ac.uk)
-immutable ubyte NCURSES_ATTR_SHIFT = 8;
-
-chtype NCURSES_BITS(uint mask, ubyte shift)
-{   return (mask << (shift + NCURSES_ATTR_SHIFT));  }
-
-immutable enum :chtype
-{
-    A_NORMAL        = (1u - 1u),
-    A_ATTRIBUTES    = NCURSES_BITS(~(1u - 1u),0),
-    A_CHARTEXT      = (NCURSES_BITS(1u,0) - 1u),
-    A_COLOR         = NCURSES_BITS(((1u) << 8) - 1u,0),
-    A_STANDOUT      = NCURSES_BITS(1u,8),
-    A_UNDERLINE     = NCURSES_BITS(1u,9),
-    A_REVERSE       = NCURSES_BITS(1u,10),
-    A_BLINK         = NCURSES_BITS(1u,11),
-    A_DIM           = NCURSES_BITS(1u,12),
-    A_BOLD          = NCURSES_BITS(1u,13),
-    A_ALTCHARSET    = NCURSES_BITS(1u,14),
-    A_INVIS         = NCURSES_BITS(1u,15),
-    A_PROTECT       = NCURSES_BITS(1u,16),
-    A_HORIZONTAL    = NCURSES_BITS(1u,17),
-    A_LEFT          = NCURSES_BITS(1u,18),
-    A_LOW           = NCURSES_BITS(1u,19),
-    A_RIGHT         = NCURSES_BITS(1u,20),
-    A_TOP           = NCURSES_BITS(1u,21),
-    A_VERTICAL      = NCURSES_BITS(1u,22),
-
-/*
- * X/Open attributes.  In the ncurses implementation, they are identical to the
- * A_ attributes.
- */
-    WA_ATTRIBUTES   = A_ATTRIBUTES,
-    WA_NORMAL       = A_NORMAL,
-    WA_STANDOUT     = A_STANDOUT,
-    WA_UNDERLINE    = A_UNDERLINE,
-    WA_REVERSE      = A_REVERSE,
-    WA_BLINK        = A_BLINK,
-    WA_DIM          = A_DIM,
-    WA_BOLD         = A_BOLD,
-    WA_ALTCHARSET   = A_ALTCHARSET,
-    WA_INVIS        = A_INVIS,
-    WA_PROTECT      = A_PROTECT,
-    WA_HORIZONTAL   = A_HORIZONTAL,
-    WA_LEFT         = A_LEFT,
-    WA_LOW          = A_LOW,
-    WA_RIGHT        = A_RIGHT,
-    WA_TOP          = A_TOP,
-    WA_VERTICAL     = A_VERTICAL
-}
 
 
 /*

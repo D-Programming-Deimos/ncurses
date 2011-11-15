@@ -43,7 +43,7 @@
 
 //#include <ncursesw/curses.h>
 string NCURSES_VERSION = "5.7";
-
+alias uint chtype;
 extern (C) char* unctrl(chtype);
 
 

@@ -43,7 +43,7 @@ module curses;
 import std.c.stddef;
 import std.c.stdio;
 import std.c.stdarg;
-public import unctrl;
+//public import unctrl;
 
 //TODO check if needed... I don't have a windows machine...
 version(Win32)
@@ -106,65 +106,112 @@ immutable enum :chtype
 
 
 /* acs symbols */
-immutable enum ACS
-{
-    /* VT100 symbols begin here */
-    ULCORNER      = 'l',
-    LLCORNER      = 'm',
-    URCORNER      = 'k',
-    LRCORNER      = 'j',
-    LTEE          = 't',
-    RTEE          = 'u',
-    BTEE          = 'v',
-    TTEE          = 'w',
-    HLINE         = 'q',
-    VLINE         = 'x',
-    PLUS          = 'n',
-    S1            = 'o',
-    S9            = 's',
-    DIAMOND       = '`',
-    CKBOARD       = 'a',
-    DEGREE        = 'f',
-    PLMINUS       = 'g',
-    BULLET        = '~',
-    /* Teletype 5410v1 symbols begin here */
-    LARROW        = ',',
-    RARROW        = '+',
-    DARROW        = '.',
-    UARROW        = '-',
-    BOARD         = 'h',
-    LANTERN       = 'i',
-    BLOCK         = '0',
-    /*
-     * These aren't documented, but a lot of System Vs have them anyway
-     * (you can spot pprryyzz{{||}} in a lot of AT&T terminfo strings).
-     * The ACS_names may not match AT&T's, our source didn't know them.
-     */
-    S3            = 'p',
-    S7            = 'r',
-    LEQUAL        = 'y',
-    GEQUAL        = 'z',
-    PI            = '{',
-    NEQUAL        = '|',
-    STERLING      = '}',
-    /*
-     * Line drawing ACS names are of the form ACS_trbl, where t is the top, r
-     * is the right, b is the bottom, and l is the left.  t, r, b, and l might
-     * be B (blank), S (single), D (double), or T (thick).  The subset defined
-     * here only uses B and S.
-     */
-    BSSB          = ULCORNER,
-    SSBB          = LLCORNER,
-    BBSS          = URCORNER,
-    SBBS          = LRCORNER,
-    SBSS          = RTEE,
-    SSSB          = LTEE,
-    SSBS          = BTEE,
-    BSSS          = TTEE,
-    BSBS          = HLINE,
-    SBSB          = VLINE,
-    SSSS          = PLUS
-}
+///I couldn't make it perfect, this is the best that I have come up with...
+///Instead of calling ACS_VAR, you use ACS_VAR().
+///Close enough for now??
+/* VT100 symbols begin here */
+auto ACS_ULCORNER()()
+{   return acs_map[cast(ubyte)'l']; }
+auto ACS_LLCORNER()()
+{   return acs_map[cast(ubyte)'m']; }
+auto ACS_URCORNER()()
+{   return acs_map[cast(ubyte)'k']; }
+auto ACS_LRCORNER()()
+{   return acs_map[cast(ubyte)'j']; }
+auto ACS_LTEE()()
+{   return acs_map[cast(ubyte)'t']; }
+auto ACS_RTEE()()
+{   return acs_map[cast(ubyte)'u']; }
+auto ACS_BTEE()()
+{   return acs_map[cast(ubyte)'v']; }
+auto ACS_TTEE()()
+{   return acs_map[cast(ubyte)'w']; }
+auto ACS_HLINE()()
+{   return acs_map[cast(ubyte)'q']; }
+auto ACS_VLINE()()
+{   return acs_map[cast(ubyte)'x']; }
+auto ACS_PLUS()()
+{   return acs_map[cast(ubyte)'n']; }
+auto ACS_S1()()
+{   return acs_map[cast(ubyte)'o']; }
+auto ACS_S9()()
+{   return acs_map[cast(ubyte)'s']; }
+auto ACS_DIAMOND()()
+{   return acs_map[cast(ubyte)'`']; }
+auto ACS_CKBOARD()()
+{   return acs_map[cast(ubyte)'a']; }
+auto ACS_DEGREE()()
+{   return acs_map[cast(ubyte)'f']; }
+auto ACS_PLMINUS()()
+{   return acs_map[cast(ubyte)'g']; }
+auto ACS_BULLET()()
+{   return acs_map[cast(ubyte)'~']; }
+
+/* Teletype 5410v1 symbols begin here */
+auto ACS_LARROW()()
+{   return acs_map[cast(ubyte)',']; }
+auto ACS_RARROW()()
+{   return  acs_map[cast(ubyte)'+'];}
+auto ACS_DARROW()()
+{   return acs_map[cast(ubyte)'.']; }
+auto ACS_UARROW()()
+{   return acs_map[cast(ubyte)'-']; }
+auto ACS_BOARD()()
+{   return acs_map[cast(ubyte)'h']; }
+auto ACS_LANTERN()()
+{   return acs_map[cast(ubyte)'i']; }
+auto ACS_BLOCK()()
+{   return acs_map[cast(ubyte)'0']; }
+
+/*
+ * These aren't documented, but a lot of System Vs have them anyway
+ * (you can spot pprryyzz{{||}} in a lot of AT&T terminfo strings).
+ * The ACS_names may not match AT&T's, our source didn't know them.
+ */
+auto ACS_S3()()
+{   return acs_map[cast(ubyte)'p']; }
+auto ACS_S7()()
+{   return acs_map[cast(ubyte)'r']; }
+auto ACS_LEQUAL()()
+{   return acs_map[cast(ubyte)'y']; }
+auto ACS_GEQUAL()()
+{   return acs_map[cast(ubyte)'z']; }
+auto ACS_PI()()
+{   return acs_map[cast(ubyte)'{']; }
+auto ACS_NEQUAL()()
+{   return acs_map[cast(ubyte)'|']; }
+auto ACS_STERLING()()
+{   return acs_map[cast(ubyte)'}']; }
+
+/*
+ * Line drawing ACS names are of the form ACS_trbl, where t is the top, r
+ * is the right, b is the bottom, and l is the left.  t, r, b, and l might
+ * be B (blank), S (single), D (double), or T (thick).  The subset defined
+ * here only uses B and S.
+ */
+auto ACS_BSSB()()
+{   return ACS_ULCORNER();  }
+auto ACS_SSBB()()
+{   return ACS_LLCORNER();  }
+auto ACS_BBSS()()
+{   return ACS_URCORNER();  }
+auto ACS_SBBS()()
+{   return ACS_LRCORNER();  }
+auto ACS_SBSS()()
+{   return ACS_RTEE();      }
+auto ACS_SSSB()()
+{   return ACS_LTEE();      }
+auto ACS_SSBS()()
+{   return ACS_BTEE();      }
+auto ACS_BSSS()()
+{   return ACS_TTEE();      }
+auto ACS_BSBS()()
+{   return ACS_HLINE();     }
+auto ACS_SBSB()()
+{   return ACS_VLINE();     }
+auto ACS_SSSS()()
+{   return ACS_PLUS();      }
+
 
 /* error codes */
 immutable enum

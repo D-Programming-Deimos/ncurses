@@ -1,7 +1,7 @@
 //regretfully modified by: 1100110
 
 import std.string: toStringz;
-import ncurses;
+import curses;
 
 void main()
 {
@@ -9,132 +9,133 @@ void main()
 
     //Please note: you might want to maximize your terminal before you try to
     //run this.  It does not check the size or enable scrolling.
+    //In other word, if your terminal is <= 23 by 79, it will do weird things.
     //That is left as an exersize for the reader.
     //Plus I'm lazy and I still have to port the rest of the tutorials.. ;)
     //The spaces are for readability on the screen when you run the program.
 
     printw(toStringz("Upper left corner           "));
-    addch(acs_map[ACS.ULCORNER]);
+    addch(ACS_ULCORNER());
     printw("\n");
 
     printw(toStringz("Lower left corner           "));
-    addch(acs_map[ACS.LLCORNER]);
+    addch(ACS_LLCORNER());
     printw("\n");
 
     printw(toStringz("Lower right corner          "));
-    addch(acs_map[ACS.LRCORNER]);
+    addch(ACS_LRCORNER());
     printw("\n");
 
     printw(toStringz("Tee pointing right          "));
-    addch(acs_map[ACS.LTEE]);
+    addch(ACS_LTEE());
     printw("\n");
 
     printw(toStringz("Tee pointing left           "));
-    addch(acs_map[ACS.RTEE]);
+    addch(ACS_RTEE());
     printw("\n");
 
     printw(toStringz("Tee pointing up             "));
-    addch(acs_map[ACS.BTEE]);
+    addch(ACS_BTEE());
     printw("\n");
 
     printw(toStringz("Tee pointing down           "));
-    addch(acs_map[ACS.TTEE]);
+    addch(ACS_TTEE());
     printw("\n");
 
     printw(toStringz("Horizontal line             "));
-    addch(acs_map[ACS.HLINE]);
+    addch(ACS_HLINE());
     printw("\n");
 
     printw(toStringz("Vertical line               "));
-    addch(acs_map[ACS.VLINE]);
+    addch(ACS_VLINE());
     printw("\n");
 
     printw(toStringz("Large Plus or cross over    "));
-    addch(acs_map[ACS.PLUS]);
+    addch(ACS_PLUS());
     printw("\n");
 
     printw(toStringz("Scan Line 1                 "));
-    addch(acs_map[ACS.S1]);
+    addch(ACS_S1());
     printw("\n");
 
     printw(toStringz("Scan Line 3                 "));
-    addch(acs_map[ACS.S3]);
+    addch(ACS_S3());
     printw("\n");
 
     printw(toStringz("Scan Line 7                 "));
-    addch(acs_map[ACS.S7]);
+    addch(ACS_S7());
     printw("\n");
 
     printw(toStringz("Scan Line 9                 "));
-    addch(acs_map[ACS.S9]);
+    addch(ACS_S9());
     printw("\n");
 
     printw(toStringz("Diamond                     "));
-    addch(acs_map[ACS.DIAMOND]);
+    addch(ACS_DIAMOND());
     printw("\n");
 
     printw(toStringz("Checker board (stipple)     "));
-    addch(acs_map[ACS.CKBOARD]);
+    addch(ACS_CKBOARD());
     printw("\n");
 
     printw(toStringz("Degree Symbol               "));
-    addch(acs_map[ACS.DEGREE]);
+    addch(ACS_DEGREE());
     printw("\n");
 
     printw(toStringz("Plus/Minus Symbol           "));
-    addch(acs_map[ACS.PLMINUS]);
+    addch(ACS_PLMINUS());
     printw("\n");
 
     printw(toStringz("Bullet                      "));
-    addch(acs_map[ACS.BULLET]);
+    addch(ACS_BULLET());
     printw("\n");
 
     printw(toStringz("Arrow Pointing Left         "));
-    addch(acs_map[ACS.LARROW]);
+    addch(ACS_LARROW());
     printw("\n");
 
     printw(toStringz("Arrow Pointing Right        "));
-    addch(acs_map[ACS.RARROW]);
+    addch(ACS_RARROW());
     printw("\n");
 
     printw(toStringz("Arrow Pointing Down         "));
-    addch(acs_map[ACS.DARROW]);
+    addch(ACS_DARROW());
     printw("\n");
 
     printw(toStringz("Arrow Pointing Up           "));
-    addch(acs_map[ACS.UARROW]);
+    addch(ACS_UARROW());
     printw("\n");
 
     printw(toStringz("Board of squares            "));
-    addch(acs_map[ACS.BOARD]);
+    addch(ACS_BOARD());
     printw("\n");
 
     printw(toStringz("Lantern Symbol              "));
-    addch(acs_map[ACS.LANTERN]);
+    addch(ACS_LANTERN());
     printw("\n");
 
     printw(toStringz("Solid Square Block          "));
-    addch(acs_map[ACS.BLOCK]);
+    addch(ACS_BLOCK());
     printw("\n");
 
     printw(toStringz("Less/Equal sign             "));
-    addch(acs_map[ACS.LEQUAL]);
+    addch(ACS_LEQUAL());
     printw("\n");
 
     printw(toStringz("Greater/Equal sign          "));
-    addch(acs_map[ACS.GEQUAL]);
+    addch(ACS_GEQUAL());
     printw("\n");
 
     printw(toStringz("Pi                          "));
-    addch(acs_map[ACS.PI]);
+    addch(ACS_PI());
     printw("\n");
 
     printw(toStringz("Not equal                   "));
-    addch(acs_map[ACS.NEQUAL]);
+    addch(ACS_NEQUAL());
     printw("\n");
 
     printw(toStringz("UK pound sign               "));
-    addch(acs_map[ACS.STERLING]);
+    addch(ACS_STERLING());
     printw("\n");
 
     refresh();

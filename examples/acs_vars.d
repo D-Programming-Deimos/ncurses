@@ -1,4 +1,3 @@
-//regretfully modified by: 1100110
 
 import std.string: toStringz;
 import curses;

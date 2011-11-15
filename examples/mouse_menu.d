@@ -1,6 +1,4 @@
-/* Modified by: 1100110
- * This one looks fun...
- */
+
 import std.string: toStringz;
 import ncurses;
 
@@ -24,12 +22,12 @@ void main()
     noecho();
     cbreak();
     keypad(stdscr, true);
-    scope(exit) endwin();           //I'm not entirely sure...
+    scope(exit) endwin();
 
     startx = (80 - WIDTH)  / 2;
     starty = (24 - HEIGHT) / 2;
 
-    attron(A_REVERSE);              //not entirely sure...
+    attron(A_REVERSE);
     mvprintw(23, 1, toStringz("Click on Exit to quit"));
     attroff(A_REVERSE);
     refresh();
@@ -40,10 +38,7 @@ void main()
 
     print_menu(menu_win, 1);
 
-//while_loop:  I'm not entirely sure why this was in there...
-//oh god, please tell me he isn't using labels...  he is...
-//trying to route around it...
-//failing miserably...
+
     c = wgetch(menu_win);
     while(c != -1)
     {

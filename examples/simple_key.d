@@ -48,7 +48,7 @@ int main()
                 choice = highlight;
                 break;
             default:
-                mvprintw(24, 0, "Charcter pressed is = %3d Hopefully it can be printed as '%c'", c, c);
+                mvprintw(24, 0, "Character pressed is = %3d Hopefully it can be printed as '%c'", c, c);
                 refresh();
                 break;
         }

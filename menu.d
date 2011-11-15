@@ -162,7 +162,7 @@ MENU* new_menu(ITEM** items);
 OPTIONS item_opts(const ITEM* item);
 OPTIONS menu_opts(const MENU* menuVar);
 //TODO check I think it needs to return a MENU, this was fine whan MENU was a void..
-//Holy shit, he is using a function pointer to get around the fact that he hadn't defined MENU...
+//Holy crap, using a function pointer to get around the fact that MENU isn't defined...
 //void* function(MENU*) item_init(const MENU* menuVar);
 //void* function(MENU*) item_term(const MENU* menuVar);
 //void* function(MENU*) menu_init(const MENU* menuVar);
@@ -212,7 +212,6 @@ int set_menu_back(MENU* menuVar, chtype attr);
 int set_menu_fore(MENU* menuVar, chtype attr);
 int set_menu_format(MENU* menuVar, int rows, int cols);
 int set_menu_grey(MENU* menuVar, chtype attr);
-//TODO function...
 int set_menu_init(MENU* menuVar, MENU* func);
 int set_menu_items(MENU* menuVar, ITEM** items);
 int set_menu_mark(MENU* menuVar, immutable char* mark);

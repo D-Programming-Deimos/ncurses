@@ -164,6 +164,7 @@ __gshared chtype    acs_map[256];
 ///Instead of calling ACS_VAR, you use ACS_VAR().
 ///Close enough for now??
 /* VT100 symbols begin here */
+
 auto ACS_ULCORNER()()
 {   return acs_map[cast(ubyte)'l']; }
 auto ACS_LLCORNER()()
@@ -726,8 +727,8 @@ int refresh()()
 int resetty();
 int reset_prog_mode();
 int reset_shell_mode();
-//TODO check
-int function(int line, int function(WINDOW* win, int cols) init) ripoffline;
+//TODO
+__gshared int function(int line, int function(WINDOW* win, int cols) init) ripoffline;
 int savetty();
 int scanw(char* fmt, ...);
 int scr_dump(char *filename);
@@ -925,7 +926,7 @@ int getpary(U:WINDOW*)(U win)
  */
  //TODO check...
 int vid_attr(chtype a, ...)
-{   vidattr(a); }
+{   return vidattr(a); }
 
 
 /*

@@ -33,7 +33,7 @@
  ****************************************************************************/
 
 /* $Id: curses.h.in,v 1.215 2010/04/29 09:46:38 tom Exp $ */
-module curses;
+module deimos.ncurses.curses;
 
 /*
  * We need FILE, etc.  Include this before checking any feature symbols.
@@ -43,7 +43,7 @@ import std.c.stddef;    /* we want wchar_t */
 import std.c.stdarg;    /* we need va_list */
 
 //#include <ncursesw/unctrl.h>
-public import unctrl;
+public import deimos.ncurses.unctrl;
 
 //TODO check if needed... I don't have a windows machine...
 version(Win32)

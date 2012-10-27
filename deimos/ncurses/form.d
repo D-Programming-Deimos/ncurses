@@ -34,8 +34,8 @@
 
 
 import std.c.stdarg;
-public import ncurses;
-public import eti;
+public import deimos.ncurses.ncurses;
+public import deimos.ncurses.eti;
 
 extern(C)
 {

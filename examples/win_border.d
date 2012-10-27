@@ -1,7 +1,7 @@
 //Modified by: 1100110
 
 import std.string: toStringz;
-import ncurses;
+import deimos.ncurses.ncurses;
 
 
 void main()

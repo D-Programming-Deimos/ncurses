@@ -1,4 +1,4 @@
-import form;
+import deimos.ncurses.form;
 
 int main()
 {	FIELD*[3] field;

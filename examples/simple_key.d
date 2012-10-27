@@ -1,6 +1,6 @@
 //import std.stdio;
 //This does NOT loop properly.
-import ncurses;
+import deimos.ncurses.ncurses;
 
 const int WIDTH = 30;
 const int HEIGHT = 10;

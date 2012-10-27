@@ -1,7 +1,7 @@
 //Modified by: 1100110
 
 import std.string;
-import ncurses;						/* ncurses.h includes stdio.h */  
+import deimos.ncurses.ncurses;				/* ncurses.h includes stdio.h */  
  
 void main()
 {

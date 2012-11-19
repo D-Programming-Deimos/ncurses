@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 1998-2006,2009 Free Software Foundation, Inc.              *
+ * Copyright (c) 1998-2002,2003 Free Software Foundation, Inc.              *
  *                                                                          *
  * Permission is hereby granted, free of charge, to any person obtaining a  *
  * copy of this software and associated documentation files (the            *
@@ -27,43 +27,27 @@
  ****************************************************************************/
 
 /****************************************************************************
- *  Author: Zeyd M. Ben-Halim <zmbenhal@netcom.com> 1995                    *
- *     and: Eric S. Raymond <esr@snark.thyrsus.com>                         *
- *     and: Juergen Pfeifer                         1996-1999,2008          *
+ *   Author:  Juergen Pfeifer, 1995,1997                                    *
  ****************************************************************************/
-/* $Id: panel.h,v 1.11 2009/04/11 19:50:40 tom Exp $ */
-/* panel.h -- interface file for panels library */
+/* $Id: eti.h,v 1.8 2003/10/25 15:24:29 tom Exp $ */
 
-module panel;
+module deimos.ncurses.eti;
 
-public import curses;
-
-extern (C)
+immutable enum :int
 {
-
-struct PANEL
-{
-  WINDOW*       win;
-  PANEL*        below;
-  PANEL*        above;
-  const void*   user;
+    E_OK                  = 0,
+    E_SYSTEM_ERROR        = -1,
+    E_BAD_ARGUMENT        = -2,
+    E_POSTED              = -3,
+    E_CONNECTED           = -4,
+    E_BAD_STATE           = -5,
+    E_NO_ROOM             = -6,
+    E_NOT_POSTED          = -7,
+    E_UNKNOWN_COMMAND     = -8,
+    E_NO_MATCH            = -9,
+    E_NOT_SELECTABLE      = -10,
+    E_NOT_CONNECTED       = -11,
+    E_REQUEST_DENIED      = -12,
+    E_INVALID_FIELD       = -13,
+    E_CURRENT             = -14
 }
-
-WINDOW* panel_window(const PANEL* pan);
-void update_panels();
-int hide_panel(PANEL* pan);
-int show_panel(PANEL* pan);
-int del_panel(PANEL* pan);
-int top_panel(PANEL* pan);
-int bottom_panel(PANEL* pan);
-PANEL* new_panel(WINDOW* win);
-PANEL* panel_above(const PANEL* pan);
-PANEL* panel_below(const PANEL* pan);
-int set_panel_userptr(PANEL* pan, const void* ptr);
-void* panel_userptr(const PANEL* pan);
-int move_panel(PANEL* pan, int starty, int startx);
-int replace_panel(PANEL* pan, WINDOW* window);
-int panel_hidden(const PANEL* pan);
-
-}
-/* end of panel.h */

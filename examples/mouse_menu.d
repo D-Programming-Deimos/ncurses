@@ -1,6 +1,6 @@
 
 import std.string: toStringz;
-import ncurses;
+import deimos.ncurses.ncurses;
 
 //immutable maybe??
 immutable int WIDTH     = 30;

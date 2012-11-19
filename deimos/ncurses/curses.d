@@ -572,7 +572,7 @@ int mvwaddch(W:WINDOW, N:int, C:chtype)(W* win, N y, N x, C ch)
   return waddch(win, ch);
 }
 int mvwaddch(W:WINDOW, N:int, C:char)(W* win, N y, N x, C ch)
-{   return mvwaddch(stdscr, y, x, cast(chtype)ch);    }
+{   return mvwaddch(win, y, x, cast(chtype)ch);    }
 int  mvwaddchnstr(W:WINDOW, N:int, C:chtype)
   (W* win,  N y, N x, C* chstr, N n)
 {

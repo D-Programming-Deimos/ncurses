@@ -31,6 +31,8 @@
  *     and: Eric S. Raymond <esr@snark.thyrsus.com>                         *
  ****************************************************************************/
 
+module deimos.ncurses.unctrl;
+
 /*
  * unctrl.h
  *

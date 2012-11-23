@@ -2,7 +2,7 @@
 //Now THIS is interesting.
 
 import std.string: toStringz;
-import ncurses;
+import deimos.ncurses.ncurses;
 
 extern(C) int system(immutable char* command);
 

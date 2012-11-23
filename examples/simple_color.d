@@ -2,7 +2,7 @@
 
 import std.stdio: writeln;
 import std.string: toStringz;
-import ncurses;
+import deimos.ncurses.ncurses;
 
 
 

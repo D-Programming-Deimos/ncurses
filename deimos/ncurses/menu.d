@@ -30,9 +30,10 @@
  *   Author:  Juergen Pfeifer, 1995,1997                                    *
  ****************************************************************************/
 /* $Id: menu.h,v 1.20 2009/04/05 00:28:07 tom Exp $ */
-module menu;
+module deimos.ncurses.menu;
 
-public import curses, eti;
+public import deimos.ncurses.curses,
+	      deimos.ncurses.eti;
 
 extern(C)
 {

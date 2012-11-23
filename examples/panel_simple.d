@@ -1,4 +1,4 @@
-import panel;
+import deimos.ncurses.panel;
 
 int main()
 {	WINDOW*[3] my_wins;

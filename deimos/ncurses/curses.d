@@ -41,6 +41,7 @@ module deimos.ncurses.curses;
 import std.c.stdio;
 import std.c.stddef;    /* we want wchar_t */
 import std.c.stdarg;    /* we need va_list */
+import core.stdc.config; /* we need c_ulong */
 
 //#include <ncursesw/unctrl.h>
 public import deimos.ncurses.unctrl;
@@ -68,10 +69,9 @@ string NCURSES_VERSION = "5.7";
 extern (C)
 {
 
-//TODO curses.h say chtype, mmask_t is a ulong, but that exhibits errors...
 /* types */
-alias   uint    chtype;
-alias   uint    mmask_t;
+alias   c_ulong    chtype;
+alias   c_ulong    mmask_t;
 alias   chtype  attr_t;
 alias   int     OPTIONS;
 alias   void    SCREEN;
@@ -814,7 +814,7 @@ int wattron(W:WINDOW, N:chtype)(W* win, N attrs)
 {   return wattr_on(win, cast(attr_t)attrs, null);    }
 int wattroff(W:WINDOW, N:chtype)(W* win, N attrs)
 {   return wattr_off(win, attrs, null);   }
-int wattrset(W:WINDOW, N:chtype)(W* win, N attrs)
+N wattrset(W:WINDOW, N:chtype)(W* win, N attrs)
 {   return win.attrs = attrs; }
 int wattr_get(W:WINDOW, A:attr_t, S:short, V:void)
   (W* win, A* attrs, S* pair, V* opts)

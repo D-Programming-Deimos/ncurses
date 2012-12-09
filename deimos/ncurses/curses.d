@@ -41,6 +41,7 @@ module deimos.ncurses.curses;
 import std.c.stdio;
 import std.c.stddef;    /* we want wchar_t */
 import std.c.stdarg;    /* we need va_list */
+import core.stdc.config; /* we need c_ulong */
 
 //#include <ncursesw/unctrl.h>
 public import deimos.ncurses.unctrl;
@@ -68,10 +69,9 @@ string NCURSES_VERSION = "5.7";
 extern (C)
 {
 
-//TODO curses.h say chtype, mmask_t is a ulong, but that exhibits errors...
 /* types */
-alias   uint    chtype;
-alias   uint    mmask_t;
+alias   c_ulong    chtype;
+alias   c_ulong    mmask_t;
 alias   chtype  attr_t;
 alias   int     OPTIONS;
 alias   void    SCREEN;
@@ -160,62 +160,59 @@ __gshared chtype    acs_map[256];
 
 
 /* acs symbols */
-///I couldn't make it perfect, this is the best that I have come up with...
-///Instead of calling ACS_VAR, you use ACS_VAR().
-///Close enough for now??
 /* VT100 symbols begin here */
 
-auto ACS_ULCORNER()()
+@property auto ACS_ULCORNER()()
 {   return acs_map[cast(ubyte)'l']; }
-auto ACS_LLCORNER()()
+@property auto ACS_LLCORNER()()
 {   return acs_map[cast(ubyte)'m']; }
-auto ACS_URCORNER()()
+@property auto ACS_URCORNER()()
 {   return acs_map[cast(ubyte)'k']; }
-auto ACS_LRCORNER()()
+@property auto ACS_LRCORNER()()
 {   return acs_map[cast(ubyte)'j']; }
-auto ACS_LTEE()()
+@property auto ACS_LTEE()()
 {   return acs_map[cast(ubyte)'t']; }
-auto ACS_RTEE()()
+@property auto ACS_RTEE()()
 {   return acs_map[cast(ubyte)'u']; }
-auto ACS_BTEE()()
+@property auto ACS_BTEE()()
 {   return acs_map[cast(ubyte)'v']; }
-auto ACS_TTEE()()
+@property auto ACS_TTEE()()
 {   return acs_map[cast(ubyte)'w']; }
-auto ACS_HLINE()()
+@property auto ACS_HLINE()()
 {   return acs_map[cast(ubyte)'q']; }
-auto ACS_VLINE()()
+@property auto ACS_VLINE()()
 {   return acs_map[cast(ubyte)'x']; }
-auto ACS_PLUS()()
+@property auto ACS_PLUS()()
 {   return acs_map[cast(ubyte)'n']; }
-auto ACS_S1()()
+@property auto ACS_S1()()
 {   return acs_map[cast(ubyte)'o']; }
-auto ACS_S9()()
+@property auto ACS_S9()()
 {   return acs_map[cast(ubyte)'s']; }
-auto ACS_DIAMOND()()
+@property auto ACS_DIAMOND()()
 {   return acs_map[cast(ubyte)'`']; }
-auto ACS_CKBOARD()()
+@property auto ACS_CKBOARD()()
 {   return acs_map[cast(ubyte)'a']; }
-auto ACS_DEGREE()()
+@property auto ACS_DEGREE()()
 {   return acs_map[cast(ubyte)'f']; }
-auto ACS_PLMINUS()()
+@property auto ACS_PLMINUS()()
 {   return acs_map[cast(ubyte)'g']; }
-auto ACS_BULLET()()
+@property auto ACS_BULLET()()
 {   return acs_map[cast(ubyte)'~']; }
 
 /* Teletype 5410v1 symbols begin here */
-auto ACS_LARROW()()
+@property auto ACS_LARROW()()
 {   return acs_map[cast(ubyte)',']; }
-auto ACS_RARROW()()
+@property auto ACS_RARROW()()
 {   return  acs_map[cast(ubyte)'+'];}
-auto ACS_DARROW()()
+@property auto ACS_DARROW()()
 {   return acs_map[cast(ubyte)'.']; }
-auto ACS_UARROW()()
+@property auto ACS_UARROW()()
 {   return acs_map[cast(ubyte)'-']; }
-auto ACS_BOARD()()
+@property auto ACS_BOARD()()
 {   return acs_map[cast(ubyte)'h']; }
-auto ACS_LANTERN()()
+@property auto ACS_LANTERN()()
 {   return acs_map[cast(ubyte)'i']; }
-auto ACS_BLOCK()()
+@property auto ACS_BLOCK()()
 {   return acs_map[cast(ubyte)'0']; }
 
 /*
@@ -223,19 +220,19 @@ auto ACS_BLOCK()()
  * (you can spot pprryyzz{{||}} in a lot of AT&T terminfo strings).
  * The ACS_names may not match AT&T's, our source didn't know them.
  */
-auto ACS_S3()()
+@property auto ACS_S3()()
 {   return acs_map[cast(ubyte)'p']; }
-auto ACS_S7()()
+@property auto ACS_S7()()
 {   return acs_map[cast(ubyte)'r']; }
-auto ACS_LEQUAL()()
+@property auto ACS_LEQUAL()()
 {   return acs_map[cast(ubyte)'y']; }
-auto ACS_GEQUAL()()
+@property auto ACS_GEQUAL()()
 {   return acs_map[cast(ubyte)'z']; }
-auto ACS_PI()()
+@property auto ACS_PI()()
 {   return acs_map[cast(ubyte)'{']; }
-auto ACS_NEQUAL()()
+@property auto ACS_NEQUAL()()
 {   return acs_map[cast(ubyte)'|']; }
-auto ACS_STERLING()()
+@property auto ACS_STERLING()()
 {   return acs_map[cast(ubyte)'}']; }
 
 /*
@@ -244,27 +241,27 @@ auto ACS_STERLING()()
  * be B (blank), S (single), D (double), or T (thick).  The subset defined
  * here only uses B and S.
  */
-auto ACS_BSSB()()
+@property auto ACS_BSSB()()
 {   return ACS_ULCORNER();  }
-auto ACS_SSBB()()
+@property auto ACS_SSBB()()
 {   return ACS_LLCORNER();  }
-auto ACS_BBSS()()
+@property auto ACS_BBSS()()
 {   return ACS_URCORNER();  }
-auto ACS_SBBS()()
+@property auto ACS_SBBS()()
 {   return ACS_LRCORNER();  }
-auto ACS_SBSS()()
+@property auto ACS_SBSS()()
 {   return ACS_RTEE();      }
-auto ACS_SSSB()()
+@property auto ACS_SSSB()()
 {   return ACS_LTEE();      }
-auto ACS_SSBS()()
+@property auto ACS_SSBS()()
 {   return ACS_BTEE();      }
-auto ACS_BSSS()()
+@property auto ACS_BSSS()()
 {   return ACS_TTEE();      }
-auto ACS_BSBS()()
+@property auto ACS_BSBS()()
 {   return ACS_HLINE();     }
-auto ACS_SBSB()()
+@property auto ACS_SBSB()()
 {   return ACS_VLINE();     }
-auto ACS_SSSS()()
+@property auto ACS_SSSS()()
 {   return ACS_PLUS();      }
 
 
@@ -814,7 +811,7 @@ int wattron(W:WINDOW, N:chtype)(W* win, N attrs)
 {   return wattr_on(win, cast(attr_t)attrs, null);    }
 int wattroff(W:WINDOW, N:chtype)(W* win, N attrs)
 {   return wattr_off(win, attrs, null);   }
-int wattrset(W:WINDOW, N:chtype)(W* win, N attrs)
+N wattrset(W:WINDOW, N:chtype)(W* win, N attrs)
 {   return win.attrs = attrs; }
 int wattr_get(W:WINDOW, A:attr_t, S:short, V:void)
   (W* win, A* attrs, S* pair, V* opts)

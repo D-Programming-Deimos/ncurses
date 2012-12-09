@@ -29,6 +29,6 @@
 /****************************************************************************
  *  Author: Jude "1100110" Young <10equals2@gmail.com.                      *
  ****************************************************************************/
-module deimos.ncurses.curses;
+module deimos.ncurses.ncurses;
 
 public import deimos.ncurses.curses;

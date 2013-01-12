@@ -1,4 +1,3 @@
-
 import std.string: toStringz;
 import deimos.ncurses.ncurses;
 
@@ -18,7 +17,7 @@ void main()
     MEVENT event;
 
     initscr();                      //hopefully you've seen all of this before.
-    clear();
+    nclear();
     noecho();
     cbreak();
     keypad(stdscr, true);
@@ -83,7 +82,7 @@ void print_menu(WINDOW* menu_win, int highlight)
 
     box(menu_win, 0, 0);
 
-    foreach(i, choice; choices)
+    foreach(int i, choice; choices)
     {
         if(highlight == i + 1)
             wattron(menu_win, A_REVERSE);
@@ -100,7 +99,7 @@ int report_choice(int mouse_x, int mouse_y)
     int i = startx + 2;
     int j = starty + 3;
     int report = 0;
-    foreach(choice, str; choices)
+    foreach(int choice, str; choices)
     {
         if((mouse_y == j + choice) && (mouse_x >= i) && (mouse_x <= i+str.length))
         {

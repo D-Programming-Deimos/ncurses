@@ -1,5 +1,6 @@
 //Modified by: 1100110
 
+import std.conv;
 import std.string;
 import deimos.ncurses.ncurses;				/* ncurses.h includes stdio.h */  
  
@@ -11,7 +12,7 @@ void main()
 	initscr();								//start the curses mode 
 	getmaxyx(stdscr, row, col);				//get the number of rows and columns
 	//print the message at the center of the screen 
-	mvprintw(row/2, (col-(mesg.length - 1))/2, "%s", toStringz(mesg));
+	mvprintw(row/2, to!uint((col-(mesg.length - 1))/2), "%s", toStringz(mesg));
 	//Did you notice? there is a '%s' not toStringified.
 	//In one of those great weird blips, D2 will pass small characters
 	//like that, and yet will choke on larger strings.

@@ -17,7 +17,7 @@ void main()
     MEVENT event;
 
     initscr();                      //hopefully you've seen all of this before.
-    clear();
+    nclear();
     noecho();
     cbreak();
     keypad(stdscr, true);

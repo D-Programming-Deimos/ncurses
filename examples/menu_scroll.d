@@ -99,7 +99,7 @@ int main()
 }
 
 void print_in_middle(WINDOW *win, int starty, int startx, int width, string strtemp, chtype color)
-{   int length, x, y;
+{   int x, y;
     float temp;
 
     if(win == null)
@@ -112,7 +112,7 @@ void print_in_middle(WINDOW *win, int starty, int startx, int width, string strt
     if(width == 0)
         width = 80;
 
-    length = strtemp.length;
+    auto length = strtemp.length;
     temp = (width - length)/ 2;
     x = startx + cast(int)temp;
     wattron(win, color);

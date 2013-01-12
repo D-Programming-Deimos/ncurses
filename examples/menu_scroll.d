@@ -55,9 +55,9 @@ int main()
     /* Print a border around the main window and print a title */
         box(my_menu_win, 0, 0);
     print_in_middle(my_menu_win, 1, 0, 40, "My Menu", COLOR_PAIR(1));
-    mvwaddch(my_menu_win, 2, 0, acs_map[ACS.LTEE]);
-    mvwhline(my_menu_win, 2, 1, acs_map[ACS.HLINE], 38);
-    mvwaddch(my_menu_win, 2, 39, acs_map[ACS.RTEE]);
+    mvwaddch(my_menu_win, 2, 0, ACS.LTEE());
+    mvwhline(my_menu_win, 2, 1, ACS.HLINE(), 38);
+    mvwaddch(my_menu_win, 2, 39, ACS.RTEE());
 
     /* Post the menu */
     post_menu(my_menu);

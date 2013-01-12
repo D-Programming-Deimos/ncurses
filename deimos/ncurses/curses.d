@@ -811,8 +811,12 @@ int wattron(W:WINDOW, N:chtype)(W* win, N attrs)
 {   return wattr_on(win, cast(attr_t)attrs, null);    }
 int wattroff(W:WINDOW, N:chtype)(W* win, N attrs)
 {   return wattr_off(win, attrs, null);   }
-N wattrset(W:WINDOW, N:chtype)(W* win, N attrs)
-{   return win.attrs = attrs; }
+int wattrset(W:WINDOW, N:chtype)(W* win, N attrs)
+{
+  if(win == null) return ERR;
+  win.attrs = attrs;
+  return OK;
+}
 int wattr_get(W:WINDOW, A:attr_t, S:short, V:void)
   (W* win, A* attrs, S* pair, V* opts)
 {

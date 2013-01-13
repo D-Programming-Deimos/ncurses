@@ -25,30 +25,30 @@ int main()
     }
     start_color();
     foreach(ushort i; 0 .. 256){ // Define all the colours with the default palette
-	init_pair(i, 0, i);      // We're only setting the background here;
+        init_pair(i, 0, i);      // We're only setting the background here;
     }                            // The space is rendered as nothing.
 
     auto w = COLS/9; // Let's just fill all the horizontal space
     
     // Basic colours
     foreach(ushort i; 0 .. 16){
-	attron(COLOR_PAIR(i));
-	mvwhline(stdscr, cast(int)(i%8),w*(i/8),to!size_t(' '),w);//chtype is a size_t by spec.
-	attroff(COLOR_PAIR(i));
+        attron(COLOR_PAIR(i));
+        mvwhline(stdscr, cast(int)(i%8),w*(i/8),to!size_t(' '),w);//chtype is a size_t by spec.
+        attroff(COLOR_PAIR(i));
     }
     
     // 6x6x6 cubemap
     foreach(ushort i; 16 .. 232){
-	attron(COLOR_PAIR(i));
-	mvwhline(stdscr, cast(int)((i-16)%36),(2*w+w*((i-16)/36)),to!size_t(' '),w);
-	attroff(COLOR_PAIR(i));
+        attron(COLOR_PAIR(i));
+        mvwhline(stdscr, cast(int)((i-16)%36),(2*w+w*((i-16)/36)),to!size_t(' '),w);
+        attroff(COLOR_PAIR(i));
     }
     
     // Greyscale
     foreach(ushort i; 232 .. 256){
-	attron(COLOR_PAIR(i));
-	mvwhline(stdscr, cast(int)(i-232),(8*w),to!size_t(' '),w);
-	attroff(COLOR_PAIR(i));
+        attron(COLOR_PAIR(i));
+        mvwhline(stdscr, cast(int)(i-232),(8*w),to!size_t(' '),w);
+        attroff(COLOR_PAIR(i));
     }
     
     wmove(stdscr, LINES-1, COLS-1);//Moving this out of the way

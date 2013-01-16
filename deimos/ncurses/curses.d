@@ -764,9 +764,7 @@ char* slk_label(int labnum);
 int slk_noutrefresh();
 int slk_refresh();
 int slk_restore();
-//TODO are both needed?
 int slk_set(int labnum, char* label, int fmt);
-int slk_set(int labnum, wchar_t* label, int fmt);
 int slk_touch();
 int standout()()
 {   return wstandout(stdscr); }

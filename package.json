@@ -3,9 +3,9 @@
 	"description": "Interface to the C ncurses library",
 	"homepage": "http://github.com/D-Programming-Deimos/ncurses",
 	"authors": [
-		"Jon \"ylixir\" Allen, ylixir@gmail.com",
-		"Dejan Lekic, dejan.lekic @ (gmail.com || kcl.ac.uk)",
-		"Jude \"1100110\" Young, 10equals2@gmail.com"
+		"Jon \"ylixir\" Allen",
+		"Dejan Lekic",
+		"Jude \"1100110\" Young"
 	],
 	"license": "ncurses",
 	"sourcePaths": [

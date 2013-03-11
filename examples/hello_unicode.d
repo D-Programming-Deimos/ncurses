@@ -4,6 +4,13 @@
  *
  * The functionality of this code is otherwise identical to hello_world.d
  *
+ * Requirements for Unicode in ncurses:
+ *  - You need to link against ncursesw instead of ncurses.  If you don't have ncursesw, rebuild
+ *    ncurses with --enable-widec (and file a bug with your distro where applicable).
+ *  - You need to be using a Unicode locale. If your $LANG looks something like `en_US.utf8`,
+ *    then you're in good shape.  Keep in mind that users don't like when you force a locale; do
+ *    it only if you think it's really necessary.
+ *
  * Modified by: Wyatt
  */
 import std.string: toStringz;

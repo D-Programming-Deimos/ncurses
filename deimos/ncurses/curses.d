@@ -388,9 +388,9 @@ int addchnstr(C:chtype, N:int)(C* chstr, N n)
 {   return waddchnstr(stdscr, chstr, n); }
 int addchstr(C:chtype)(C* chstr)
 {   return waddchstr(stdscr, str);    }
-int addnstr(C:immutable char, N:int)(C* str, N n)
+int addnstr(C:const char, N:int)(C* str, N n)
 {   return waddnstr(stdscr, str, n);  }
-int addstr(C:immutable char)(C* str)
+int addstr(C:const char)(C* str)
 {   return waddnstr(stdscr, str, -1); }
 int attroff(N:chtype)(N attrs)
 {   return wattroff(stdscr, attrs);   }
@@ -523,9 +523,9 @@ int mvaddchnstr(N:int, C:chtype)(N y, N x, C* chstr, N n)///ditto
 {   return mvwaddchnstr(stdscr, y, x, chstr, n);  }
 int mvaddchstr(N:int, C:chtype)(N y, N x, C* chstr)///ditto
 {   return mvwaddchstr(stdscr, y, x, str);    }
-int mvaddnstr(N:int, C:immutable char)(N y, N x, C* str, N n)
+int mvaddnstr(N:int, C:const char)(N y, N x, C* str, N n)
 {   return mvwaddnstr(stdscr, y, x, str, n);  }
-int mvaddstr(N:int, C:immutable char)(N y, N x, C* str)
+int mvaddstr(N:int, C:const char)(N y, N x, C* str)
 {   return mvwaddstr(stdscr, y, x, str);  }
 int mvchgat(N:int, A:attr_t, S:short, V:void)
   (N y, N x, N n, A attr, S color, V* opts)
@@ -558,7 +558,7 @@ int mvinsstr(N:int, C:char)(N y, N x, C* str)
 {   return mvwinsstr(stdscr, y, x, str);  }
 int mvinstr(N:int, C:char)(N y, N x, C* str)
 {   return mvwinstr(stdscr, y, x, str);   }
-int mvprintw(int y, int x, immutable char* fmt, ...);
+int mvprintw(int y, int x, const char* fmt, ...);
 int mvscanw(int y, int x, char* fmt, ...);
 int mvvline(N:int, C:chtype)(N y, N x, C ch, N n)
 {   return mvwvline(stdscr, y, x, ch, n); }
@@ -584,13 +584,13 @@ int mvwaddchstr(W:WINDOW, N:int, C:chtype)
     return ERR;
   return waddchnstr(win, chstr, -1);
 }
-int mvwaddnstr(W:WINDOW, N:int, C:immutable char)(W* win, N y, N x, C* str, N n)
+int mvwaddnstr(W:WINDOW, N:int, C:const char)(W* win, N y, N x, C* str, N n)
 {
   if(wmove(win, y, x) == ERR)
     return ERR;
   return waddnstr(win, str, n);
 }
-int mvwaddstr(W:WINDOW, N:int, C:immutable char)(W* win, N y, N x, C* str)
+int mvwaddstr(W:WINDOW, N:int, C:const char)(W* win, N y, N x, C* str)
 {
   if(wmove(win, y, x) == ERR)
     return ERR;
@@ -682,7 +682,7 @@ int mvwinstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, C* str)
     return ERR;
   return winstr(win, str);
 }
-int mvwprintw(WINDOW* win, int y, int x, immutable char* fmt, ...);
+int mvwprintw(WINDOW* win, int y, int x, const char* fmt, ...);
 int mvwscanw(WINDOW* win, int y, int x, char* fmt, ...);
 int mvwvline(W:WINDOW, N:int, C:chtype)(W* win, N y, N x, C ch, N n)
 {
@@ -713,7 +713,7 @@ int pnoutrefresh(WINDOW* pad, int pminrow, int pmincol,
      int sminrow, int smincol, int smaxrow, int smaxcol);
 int prefresh(WINDOW* pad, int pminrow, int pmincol,
      int sminrow, int smincol, int smaxrow, int smaxcol);
-int printw(immutable char* fmt, ...);
+int printw(const char* fmt, ...);
 int putwin(WINDOW* win, FILE* filep);
 void qiflush();
 int raw();
@@ -792,8 +792,8 @@ int vidattr(chtype c);
 int vidputs(chtype, int function(int));
 int vline(C:chtype, N:int)(C ch, N n)
 {   return wvline(stdscr, ch, n); }
-int vwprintw(WINDOW* win, immutable char* fmt, va_list varglist);
-int vw_printw(W:WINDOW, C:immutable char, V:va_list)(W* win, C* fmt, V varglist)
+int vwprintw(WINDOW* win, const char* fmt, va_list varglist);
+int vw_printw(W:WINDOW, C:const char, V:va_list)(W* win, C* fmt, V varglist)
 {   return vwprintw(win, fmt, varglist);  }
 int vw_scanw(W:WINDOW, C:char, V:va_list)(W* win, C* fmt, V varglist)
 {   return vwscanw(win, fmt, varglist);   }
@@ -802,8 +802,8 @@ int waddch(WINDOW* win, chtype ch);
 int waddchnstr(WINDOW* win, chtype* chstr, int n);
 int waddchstr(W:WINDOW, C:chtype)(W* win, C* chstr)
 {   return waddchnstr(win, chstr, -1);    }
-int waddnstr(WINDOW* win, immutable char* str, int n);
-int waddstr(W:WINDOW, C:immutable char)(W* win, C* str)
+int waddnstr(WINDOW* win, const char* str, int n);
+int waddstr(W:WINDOW, C:const char)(W* win, C* str)
 {   return waddnstr(win, str, -1);    }
 int wattron(W:WINDOW, N:chtype)(W* win, N attrs)
 {   return wattr_on(win, cast(attr_t)attrs, null);    }
@@ -867,7 +867,7 @@ int winstr(W:WINDOW, C:char)(W* win, C* str)
 {   return winnstr(win, str, -1); }
 int wmove(WINDOW* win, int y, int x);
 int wnoutrefresh(WINDOW* win);
-int wprintw(WINDOW* win, immutable char* fmt, ...);
+int wprintw(WINDOW* win, const char* fmt, ...);
 int wredrawln(WINDOW* win, int beg_line, int num_lines);
 int wrefresh(WINDOW* win);
 int wscanw(WINDOW* win, char* fmt, ...);

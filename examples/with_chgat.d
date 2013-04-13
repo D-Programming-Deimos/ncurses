@@ -7,7 +7,7 @@ void main()
 
     init_pair(1, COLOR_CYAN, COLOR_BLACK);
     printw(toStringz("A Big string which i didn't care to type fully... "));
-    mvchgat(0, 0, -1, cast(attr_t)A_BLINK, cast(short)1, null);
+    mvchgat(0, 0, -1, cast(attr_t)A_BLINK, cast(short)1, cast(void*)null);
     /*
      * First two parameters specify the position at which to start
      * Third parameter number of characters to update. -1 means till

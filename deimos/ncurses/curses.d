@@ -66,7 +66,7 @@ immutable enum
 /* This is defined in more than one ncurses header, for identification */
 string NCURSES_VERSION = "5.7";
 
-extern (C)
+extern (C) nothrow
 {
 
 /* types */

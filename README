@@ -4,12 +4,6 @@ There will be bugs.  This is simply too large of a library for me to test every 
 If you have any trouble, or think that something should be fixed, create a bug report and I'll get right on it.
 
 WARNINGS:
-	ACS vars currently break from the norm, I'm looking into it, but I'm not sure if It can
-	be done exactly the same that C does it.
-	////instead of writing "addch(ACS_ULCORNER);", Instead write "addch(acs_map[ACS.ULCORNER]);". fixed
-	Instead of writing "addch(ACS_ULCORNER);", Instead write "addch(ACS_ULCORNER());"
-	I think that this is as close as we are going to get without digging through the source to extract what acs_map[] really is.
-
 	This should work for most of your needs, however there are still one or two more things that need to be done.
 	I plan on having those completed in the next few days.
 	I'm actually not entirely sure what still needs to be done.  Someone told me that this was a macro library.

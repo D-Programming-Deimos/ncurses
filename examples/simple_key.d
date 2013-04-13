@@ -17,7 +17,7 @@ int main()
     int c;
 
     initscr();
-    clear();
+    nclear();
     noecho();
     cbreak();   /* Line buffering disabled. pass on everything */
     scope(exit) endwin();

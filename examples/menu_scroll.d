@@ -55,9 +55,9 @@ int main()
     /* Print a border around the main window and print a title */
         box(my_menu_win, 0, 0);
     print_in_middle(my_menu_win, 1, 0, 40, "My Menu", COLOR_PAIR(1));
-    mvwaddch(my_menu_win, 2, 0, acs_map[ACS.LTEE]);
-    mvwhline(my_menu_win, 2, 1, acs_map[ACS.HLINE], 38);
-    mvwaddch(my_menu_win, 2, 39, acs_map[ACS.RTEE]);
+    mvwaddch(my_menu_win, 2, 0, ACS_LTEE);
+    mvwhline(my_menu_win, 2, 1, ACS_HLINE, 38);
+    mvwaddch(my_menu_win, 2, 39, ACS_RTEE);
 
     /* Post the menu */
     post_menu(my_menu);
@@ -99,7 +99,7 @@ int main()
 }
 
 void print_in_middle(WINDOW *win, int starty, int startx, int width, string strtemp, chtype color)
-{   int length, x, y;
+{   int x, y;
     float temp;
 
     if(win == null)
@@ -112,7 +112,7 @@ void print_in_middle(WINDOW *win, int starty, int startx, int width, string strt
     if(width == 0)
         width = 80;
 
-    length = strtemp.length;
+    auto length = strtemp.length;
     temp = (width - length)/ 2;
     x = startx + cast(int)temp;
     wattron(win, color);

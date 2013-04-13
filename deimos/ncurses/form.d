@@ -32,6 +32,8 @@
 
 /* $Id: form.h,v 0.21 2009/11/07 19:31:11 tom Exp $ */
 
+module deimos.ncurses.form;
+
 
 import std.c.stdarg;
 public import deimos.ncurses.ncurses;

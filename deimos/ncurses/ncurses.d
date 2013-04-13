@@ -32,3 +32,4 @@
 module deimos.ncurses.ncurses;
 
 public import deimos.ncurses.curses;
+alias deimos.ncurses.curses.clear nclear;

@@ -13,5 +13,5 @@ WARNINGS:
 	I'll continue to get the other headers translated, things like termcap.h will be added soon.
 	I simply need more eyes on this to bug check and ensure that things are working properly.
 
-	If you are familiar with the FREE acronym(Functional, Reliable, Elegant, Efficient) I would say we are an F.
-	I doubt we can get any farther than FR, but let's go for it!
+If you are familiar with the FREE acronym(Functional, Reliable, Elegant, Efficient) I would say we are an F.
+I doubt we can get any farther than FR, but let's go for it!

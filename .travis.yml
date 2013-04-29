@@ -4,6 +4,5 @@ before_install:
     - sudo apt-get install dub dmd
 
 script:
-    cp .main.d ./deimos/ncurses/main.d && dub && rm ./deimos/ncurses/main.d && return 0
-    dub
+    cp .main.d ./deimos/ncurses/main.d && dub 
 

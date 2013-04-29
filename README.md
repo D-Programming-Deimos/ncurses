@@ -1,5 +1,6 @@
-Ncurses
+Ncurses 
 =======
+[![Build Status](https://travis-ci.org/1100110/ncurses.png?branch=master)](https://travis-ci.org/1100110/ncurses)
 
 
 This is currently in BETA.

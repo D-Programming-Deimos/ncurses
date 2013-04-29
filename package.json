@@ -15,5 +15,5 @@
 		"ncursesw"
 	],
     "targetType": "staticLibrary",
-    "buildRequirements":    ["relaxProperties"],
+    "buildRequirements": ["relaxProperties"],
 }

@@ -1,19 +1,21 @@
 {
-	"name": "ncurses",
-	"description": "Interface to the C ncurses library",
-	"homepage": "http://github.com/D-Programming-Deimos/ncurses",
+	"name":         "ncurses-d",
+	"description":  "Interface to the C ncurses library",
+	"homepage":     "http://github.com/D-Programming-Deimos/ncurses",
 	"authors": [
-		"Jon \"ylixir\" Allen",
-		"Dejan Lekic",
-		"Jude \"1100110\" Young"
+		            "Jon \"ylixir\" Allen",
+		            "Dejan Lekic",
+		            "Jude \"1100110\" Young"
 	],
-	"license": "ncurses",
+	"license":      "ncurses",
 	"sourcePaths": [
-		"deimos"
+		            "deimos"
 	],
 	"libs": [
-		"ncursesw"
+		            "ncursesw"
 	],
-    "targetType": "staticLibrary",
-    "buildRequirements": ["relaxProperties"],
+    "targetType":   "staticLibrary",
+    "buildRequirements": [
+                    "relaxProperties"
+    ],
 }

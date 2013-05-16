@@ -4,6 +4,6 @@ before_install:
     - sudo apt-get install dub dmd libncursesw5
 
 script:
-    rdmd -lib -L-lncursesw -oflibncurses-d.o -c deimos/ncurses/*.d 
-    #cp .main.d ./deimos/ncurses/main.d && dub 
+    rdmd -lib -L-lncursesw -oflibncurses-d deimos/ncurses/curses.d deimos/ncurses/eti.d deimos/ncurses/form.d deimos/ncurses/menu.d deimos/ncurses/ncurses.d deimos/ncurses/panel.d deimos/ncurses/unctrl.d
+    #cp .main.d ./deimos/ncurses/main.d && dub build 
 

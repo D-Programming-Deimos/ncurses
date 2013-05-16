@@ -1,5 +1,5 @@
 {
-	"name":         "ncurses-d",
+	"name":         "ncurses",
 	"description":  "Interface to the C ncurses library",
 	"homepage":     "http://github.com/D-Programming-Deimos/ncurses",
 	"authors": [

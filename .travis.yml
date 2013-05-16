@@ -1,8 +1,7 @@
 before_install:
     - sudo wget https://d-apt.googlecode.com/files/d-apt.list -O /etc/apt/sources.list.d/d-apt.list
     - sudo apt-get update && sudo apt-get -y --allow-unauthenticated install d-apt-keyring && sudo apt-get update
-    - sudo apt-get install dub dmd libncursesw5
+    - sudo apt-get install dmd libncursesw5
 
 script:
     dmd -lib -L-lncursesw -oflibncurses-d deimos/ncurses/curses.d deimos/ncurses/eti.d deimos/ncurses/form.d deimos/ncurses/menu.d deimos/ncurses/ncurses.d deimos/ncurses/panel.d deimos/ncurses/unctrl.d
-    #dub build -vv

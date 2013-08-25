@@ -1,9 +1,9 @@
-import std.string: toStringz;
+#!/usr/bin/rdmd -L-lncursesw
+import std.string:  toStringz;
 import deimos.ncurses.ncurses;
 
-//immutable maybe??
-immutable int WIDTH     = 30;
-immutable int HEIGHT    = 10;
+enum WIDTH = 30;
+enum HEIGHT    = 10;
 
 int startx = 0;
 int starty = 0;
@@ -17,6 +17,7 @@ void main()
     MEVENT event;
 
     initscr();                      //hopefully you've seen all of this before.
+    scope(exit) endwin();
     nclear();
     noecho();
     cbreak();

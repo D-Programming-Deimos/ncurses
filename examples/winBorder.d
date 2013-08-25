@@ -1,6 +1,7 @@
+#!/usr/bin/rdmd -L-lncursesw
 //Modified by: 1100110
 
-import std.string: toStringz;
+import std.string:  toStringz;
 import deimos.ncurses.ncurses;
 
 
@@ -11,6 +12,7 @@ void main()
     int ch;
 
     initscr();          //Start curses mode
+    scope(exit)     endwin();
     cbreak();           //Line buffering disabled, Pass on everty thing to me
     keypad(stdscr, true);       //I need that nifty F1
 
@@ -46,8 +48,6 @@ void main()
                 break;
         }//switch-case
     }//while()
-
-    endwin();           //End curses mode
 }
 
 WINDOW* create_newwin(int height, int width, int starty, int startx)

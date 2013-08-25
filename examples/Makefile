@@ -1,6 +1,6 @@
 DC=rdmd -g -w --build-only -ofbin/$@ -I../ -L-lncursesw $^
 
-all: 	init helloUnicode helloWorld simpleColor simpleKey simpleSpectrum keyCode chgat acsVars printw.d
+all: 	init helloUnicode helloWorld simpleColor simpleKey simpleSpectrum keyCode chgat acsVars printw simplePanel
 	
 init: 
 	@echo "building all examples..."
@@ -14,7 +14,7 @@ helloUnicode: 	helloUnicode.d
 simpleColor: 	simpleColor.d
 	$(DC)
 
-keyCode: 	keyCode.d
+simplePanel: 	simplePanel.d
 	$(DC)
 
 # TODO fix
@@ -27,11 +27,16 @@ simpleSpectrum: simpleSpectrum.d
 acsVars: 	acsVars.d
 	$(DC)
 
-
 chgat: 		chgat.d
 	$(DC)
 
+keyCode: 	keyCode.d
+	$(DC)
+
 tempLeave: 	tempLeave.d
+	$(DC)
+
+printw: 	printw.d
 	$(DC)
 
 clean: 

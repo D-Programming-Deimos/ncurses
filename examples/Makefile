@@ -1,6 +1,9 @@
-DMD=rdmd -g -w --build-only -ofbin/$@ -L-lncursesw $^
+DMD=rdmd -g -w --build-only -ofbin/$@ -I../ -L-lncursesw $^
 
-all: 	helloUnicode helloWorld
+all: 	init helloUnicode helloWorld simpleColor simpleKey keyCode
+	
+init: 
+	@echo "building all examples..."
 
 helloWorld: 	helloWorld.d
 	$(DMD)
@@ -14,5 +17,10 @@ simpleColor: 	simpleColor.d
 keyCode: 	keyCode.d
 	$(DMD)
 
+# TODO fix
+simpleKey: 	simpleKey.d
+	$(DMD)
+
 clean: 
 	@rm bin/*
+	@echo "done."

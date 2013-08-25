@@ -1,6 +1,7 @@
 DC=rdmd -g -w --build-only -ofbin/$@ -I../ -L-lncursesw $^
 
-all: 	init helloUnicode helloWorld simpleColor simpleKey simpleSpectrum keyCode chgat acsVars printw simplePanel
+all: 	init helloUnicode helloWorld simpleColor simpleKey simpleSpectrum keyCode chgat acsVars printw simplePanel winBorder.d
+
 	
 init: 
 	@echo "building all examples..."
@@ -39,6 +40,8 @@ tempLeave: 	tempLeave.d
 printw: 	printw.d
 	$(DC)
 
+winBorder: 	winBorder.d
+	$(DC)
 clean: 
 	@rm bin/*
 	@echo "done."

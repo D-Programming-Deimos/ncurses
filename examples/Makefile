@@ -1,25 +1,38 @@
-DMD=rdmd -g -w --build-only -ofbin/$@ -I../ -L-lncursesw $^
+DC=rdmd -g -w --build-only -ofbin/$@ -I../ -L-lncursesw $^
 
-all: 	init helloUnicode helloWorld simpleColor simpleKey keyCode
+all: 	init helloUnicode helloWorld simpleColor simpleKey simpleSpectrum keyCode withChgat acsVars
 	
 init: 
 	@echo "building all examples..."
 
 helloWorld: 	helloWorld.d
-	$(DMD)
+	$(DC)
 
 helloUnicode: 	helloUnicode.d
-	$(DMD)
+	$(DC)
 
 simpleColor: 	simpleColor.d
-	$(DMD)
+	$(DC)
 
 keyCode: 	keyCode.d
-	$(DMD)
+	$(DC)
 
 # TODO fix
 simpleKey: 	simpleKey.d
-	$(DMD)
+	$(DC)
+
+simpleSpectrum: simpleSpectrum.d
+	$(DC)
+
+acsVars: 	acsVars.d
+	$(DC)
+
+
+withChgat: 	withChgat.d
+	$(DC)
+
+tempLeave: 	tempLeave.d
+	$(DC)
 
 clean: 
 	@rm bin/*

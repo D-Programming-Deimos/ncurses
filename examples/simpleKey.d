@@ -1,17 +1,22 @@
-//import std.stdio;
+#!/usr/bin/rdmd -L-lncursesw
 //This does NOT loop properly.
 import deimos.ncurses.ncurses;
+import std.conv:    to;
 
-const int WIDTH = 30;
-const int HEIGHT = 10;
+enum WIDTH = 30;
+enum HEIGHT = 10;
 
 int startx = 0;
 int starty = 0;
 
-immutable char[][] choices = ["Choice 1", "Choice 2", "Choice 3", "Choice 4", "Exit"];
+immutable choices = ["Choice 1", "Choice 2", "Choice 3", "Choice 4", "Exit"];
 
 int main()
-{   WINDOW* menu_win;
+{   
+    scope(failure)  endwin();
+    scope(exit)     endwin();
+
+    WINDOW* menu_win;
     int highlight = 1;
     int choice = 0;
     int c;
@@ -20,7 +25,6 @@ int main()
     nclear();
     noecho();
     cbreak();   /* Line buffering disabled. pass on everything */
-    scope(exit) endwin();
     startx = (80 - WIDTH) / 2;
     starty = (24 - HEIGHT) / 2;
 
@@ -34,7 +38,7 @@ int main()
         switch(c)
         {   case KEY_UP:
                 if(highlight == 1)
-                    highlight = choices.length;
+                    highlight = choices.length.to!int;
                 else
                     --highlight;
                 break;

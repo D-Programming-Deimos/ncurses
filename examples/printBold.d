@@ -1,10 +1,7 @@
+#!/usr/bin/rdmd -L-lncursesw
 /* This is rather interesting, it prints the bold version
  * of whatever you type on the screen.
  *
- * Today's exercise: put all of this in a while loop,
- * so that you can keep typing stuff in until you get bored.
- * Might be harder than you think.  ;)
- * Modified by: 1100110
  */ 
 
 import std.string: toStringz;

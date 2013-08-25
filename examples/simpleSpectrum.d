@@ -1,9 +1,10 @@
+#!/usr/bin/rdmd -L-lncursesw
 //simple_spectrum: Sample of 256-colour ncurses output in D.
 //Modified by: Wyatt
 
-import std.stdio: writeln;
-import std.conv;
 import deimos.ncurses.ncurses;
+import std.stdio:   writeln;
+import std.conv:    to;
 
 //Extended colour support was added in ncurses 5.5 for the wncurses
 //library.  wncurses has generally been shipped by default in Linux
@@ -16,6 +17,8 @@ import deimos.ncurses.ncurses;
 
 int main()
 {
+    scope(failure)  endwin;
+    scope(exit)     endwin;
     initscr();
     if(has_colors() == false)
     {
@@ -53,7 +56,6 @@ int main()
     
     wmove(stdscr, LINES-1, COLS-1);//Moving this out of the way
     getch();
-    endwin();
 
     return 0;
 }

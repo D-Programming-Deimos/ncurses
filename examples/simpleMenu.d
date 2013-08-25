@@ -1,22 +1,27 @@
+#!/usr/bin/rdmd -L-lmenu
+import std.conv:    to;
 import deimos.ncurses.menu;
 
-const int CTRLD = 4;
+pragma(lib, "ncurses");
+pragma(lib, "menu");
 
+enum CTRLD = 4;
 immutable char[][] choices = [  "Choice 1",
                                 "Choice 2",
                                 "Choice 3",
                                 "Choice 4",
                                 "Exit"  ];
 
-int main()
-{   ITEM*[] my_items;
+void main()
+{   
+    ITEM*[] my_items;
     int c;
     MENU* my_menu;
-    int n_choices, i;
+    size_t n_choices;
     ITEM* cur_item;
 
-
     initscr();
+    scope(exit)     endwin();
     cbreak();
     noecho();
     keypad(stdscr, true);
@@ -24,8 +29,9 @@ int main()
     n_choices = choices.length;
     my_items.length = n_choices + 1;
 
-    for(i = 0; i < n_choices; ++i)
+    foreach(i; 0..n_choices)
             my_items[i] = new_item((choices[i]~'\0').ptr, (choices[i]~'\0').ptr);
+
     my_items[n_choices] = null;
 
     my_menu = new_menu(my_items.ptr);
@@ -49,7 +55,5 @@ int main()
     free_item(my_items[0]);
     free_item(my_items[1]);
     free_menu(my_menu);
-    endwin();
-        return 0;
 }
 

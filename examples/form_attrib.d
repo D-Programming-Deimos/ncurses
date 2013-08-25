@@ -1,6 +1,9 @@
+#!/usr/bin/rdmd
 import deimos.ncurses.form;
 import std.string;
-
+//TODO fix
+pragma(lib, "ncursesw");
+pragma(lib, "form");
 
 void main()
 {

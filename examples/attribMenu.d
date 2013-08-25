@@ -1,5 +1,7 @@
+#!/usr/bin/rdmd -L-lmenu
 import deimos.ncurses.menu;
-
+import std.conv:    to;
+pragma(lib, "menu");
 const int CTRLD = 4;
 
 immutable char[][] choices = [  "Choice 1",
@@ -30,7 +32,7 @@ int main()
     init_pair(3, COLOR_MAGENTA, COLOR_BLACK);
 
     /* Initialize items */
-        n_choices = choices.length;
+        n_choices = choices.length.to!int;
         my_items.length = n_choices + 1;
         for(i = 0; i < n_choices; ++i)
                 my_items[i] = new_item((choices[i]~'\0').ptr, (choices[i]~'\0').ptr);

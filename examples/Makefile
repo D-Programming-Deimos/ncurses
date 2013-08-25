@@ -1,7 +1,6 @@
 DC=rdmd -g -w --build-only -ofbin/$@ -I../ -L-lncursesw $^
 
-all: 	init helloUnicode helloWorld simpleColor simpleKey simpleSpectrum keyCode chgat acsVars printw simplePanel winBorder.d
-
+all: 	init helloUnicode helloWorld simpleColor simpleKey simpleSpectrum keyCode chgat acsVars printw simplePanel winBorder.d simpleMenu.d otherBorder mouseMenu scrollMenu attribMenu printBold
 	
 init: 
 	@echo "building all examples..."
@@ -25,6 +24,9 @@ simpleKey: 	simpleKey.d
 simpleSpectrum: simpleSpectrum.d
 	$(DC)
 
+simpleMenu: 	simpleMenu.d
+	$(DC)
+
 acsVars: 	acsVars.d
 	$(DC)
 
@@ -40,8 +42,24 @@ tempLeave: 	tempLeave.d
 printw: 	printw.d
 	$(DC)
 
+printBold: 	printBold.d
+	$(DC)
+
 winBorder: 	winBorder.d
 	$(DC)
+
+otherBorder: 	otherBorder.d
+	$(DC)
+
+mouseMenu: 	mouseMenu.d
+	$(DC)
+
+scrollMenu: 	scrollMenu.d
+	$(DC)
+
+attribMenu: 	attribMenu.d
+	$(DC)
+
 clean: 
 	@rm bin/*
 	@echo "done."

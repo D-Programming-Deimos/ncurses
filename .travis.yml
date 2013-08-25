@@ -1,7 +1,7 @@
 before_install:
     - sudo curl http://netcologne.dl.sourceforge.net/project/d-apt/files/d-apt.list -o /etc/apt/sources.list.d/d-apt.list
     - sudo apt-get update && sudo apt-get -y --allow-unauthenticated install d-apt-keyring && sudo apt-get update
-    - sudo apt-get install dmd libncursesw5
+    - sudo apt-get install dmd-bin libncursesw5
 
 script:
     dmd -lib -L-lncursesw -oflibncurses-d deimos/ncurses/curses.d deimos/ncurses/eti.d deimos/ncurses/form.d deimos/ncurses/menu.d deimos/ncurses/ncurses.d deimos/ncurses/panel.d deimos/ncurses/unctrl.d

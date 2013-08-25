@@ -11,6 +11,8 @@ helloUnicode: 	helloUnicode.d
 simpleColor: 	simpleColor.d
 	$(DMD)
 
+keyCode: 	keyCode.d
+	$(DMD)
 
 clean: 
 	@rm bin/*

@@ -1,6 +1,6 @@
 DC=rdmd -g -w --build-only -ofbin/$@ -I../ -L-lncursesw $^
 
-all: 	init helloUnicode helloWorld simpleColor simpleKey simpleSpectrum keyCode withChgat acsVars
+all: 	init helloUnicode helloWorld simpleColor simpleKey simpleSpectrum keyCode chgat acsVars printw.d
 	
 init: 
 	@echo "building all examples..."
@@ -28,7 +28,7 @@ acsVars: 	acsVars.d
 	$(DC)
 
 
-withChgat: 	withChgat.d
+chgat: 		chgat.d
 	$(DC)
 
 tempLeave: 	tempLeave.d

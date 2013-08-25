@@ -1,3 +1,4 @@
+#!/usr/bin/rdmd -L-lncursesw
 /**  hello_world.d
  *
  * I'm assuming that you are starting here, so I've included

@@ -1,21 +1,21 @@
+#!/usr/bin/rdmd -L-lncursesw
 //Modified by: 1100110
-
-import std.stdio: writeln;
-import std.string: toStringz;
+import std.stdio:   writeln;
+import std.string:  toStringz;
 import deimos.ncurses.ncurses;
 
 
-
-int main()
-{
+int main() {
     initscr();                              //Start curses mode
+
     if(has_colors() == false)
     {
         endwin();
-        writeln("Your terminal does not support color...");
-        return 1;                           //ends the program
+        writeln("Your terminal does not support color... Goodbye");
+        return 1;
     }
-    start_color();                          // Start color
+    start_color();
+
     init_pair(1, COLOR_RED, COLOR_BLACK);
 
     attron(COLOR_PAIR(1));
@@ -32,7 +32,6 @@ int main()
 void print_in_middle(WINDOW *win, int starty, int startx, int width, string str)
 {
     int length, x, y;
-    float temp;
 
     if(win == null)
         win = stdscr;
@@ -48,9 +47,11 @@ void print_in_middle(WINDOW *win, int starty, int startx, int width, string str)
         width = 80;
 
     //int already takes the floor, we can change temp to int.
-    temp = (width - str.length)/ 2;
+    float temp = (width - str.length)/ 2;
     x = startx + cast(int)temp;
+
     mvwprintw(win, y, x, "%s", toStringz(str));
+
     refresh();
 }
 

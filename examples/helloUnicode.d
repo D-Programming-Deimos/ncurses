@@ -1,7 +1,7 @@
+#!/usr/bin/rdmd -L-lncursesw
 /**  hello_unicode.d
  *
  * This is a demonstration of Unicode output with ncurses in D.
- *
  * The functionality of this code is otherwise identical to hello_world.d
  *
  * Requirements for Unicode in ncurses:
@@ -13,8 +13,8 @@
  *
  * Modified by: Wyatt
  */
-import std.string: toStringz;
-import std.c.locale; // Need setlocale()
+import std.string:  toStringz;
+import std.c.locale;    // Need setlocale()
 import deimos.ncurses.ncurses;
 
 void main()

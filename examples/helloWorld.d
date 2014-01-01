@@ -13,7 +13,7 @@
  * Modified by: 1100110
  */
 import std.string:  toStringz;
-import deimos.ncurses.ncurses;
+import deimos.ncurses;
 
 void main()
 {   //toStringz returns immutable char*   Which is what most of these

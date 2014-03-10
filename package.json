@@ -11,6 +11,9 @@
     "sourcePaths": [
                     "deimos"
     ],
+    "importPaths": [
+                    "."
+    ],
     "libs": [
                     "ncursesw"
     ],

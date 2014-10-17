@@ -145,16 +145,16 @@ immutable enum :chtype
 
 
 /* global variables */
-__gshared WINDOW*   stdscr;
-__gshared WINDOW*   curscr;
-__gshared WINDOW*   newscr;
-__gshared char[]    ttytype;
-__gshared int       COLORS;
-__gshared int       COLOR_PAIRS;
-__gshared int       LINES;
-__gshared int       COLS;
-__gshared int       TABSIZE;
-__gshared int       ESCDELAY;
+__gshared WINDOW*     stdscr;
+__gshared WINDOW*     curscr;
+__gshared WINDOW*     newscr;
+__gshared char[]      ttytype;
+__gshared int         COLORS;
+__gshared int         COLOR_PAIRS;
+__gshared int         LINES;
+__gshared int         COLS;
+__gshared int         TABSIZE;
+__gshared int         ESCDELAY;
 __gshared chtype[256] acs_map;
 
 

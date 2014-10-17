@@ -38,9 +38,9 @@ module deimos.ncurses.curses;
 /*
  * We need FILE, etc.  Include this before checking any feature symbols.
  */
-import std.c.stdio;
-import std.c.stddef;    /* we want wchar_t */
-import std.c.stdarg;    /* we need va_list */
+import core.stdc.stdio;
+import core.stdc.stddef;    /* we want wchar_t */
+import core.stdc.stdarg;    /* we need va_list */
 import core.stdc.config; /* we need c_ulong */
 
 //#include <ncursesw/unctrl.h>
@@ -145,17 +145,17 @@ immutable enum :chtype
 
 
 /* global variables */
-__gshared WINDOW*   stdscr;
-__gshared WINDOW*   curscr;
-__gshared WINDOW*   newscr;
-__gshared char      ttytype[];
-__gshared int       COLORS;
-__gshared int       COLOR_PAIRS;
-__gshared int       LINES;
-__gshared int       COLS;
-__gshared int       TABSIZE;
-__gshared int       ESCDELAY;
-__gshared chtype    acs_map[256];
+__gshared WINDOW*     stdscr;
+__gshared WINDOW*     curscr;
+__gshared WINDOW*     newscr;
+__gshared char[]      ttytype;
+__gshared int         COLORS;
+__gshared int         COLOR_PAIRS;
+__gshared int         LINES;
+__gshared int         COLS;
+__gshared int         TABSIZE;
+__gshared int         ESCDELAY;
+__gshared chtype[256] acs_map;
 
 
 
@@ -307,7 +307,7 @@ immutable size_t CCHARW_MAX = 5;
 struct cchar_t
 {
   attr_t attr;
-  wchar_t chars[CCHARW_MAX];
+  wchar_t[CCHARW_MAX] chars;
 }
 
 struct  WINDOW
@@ -368,7 +368,7 @@ struct _nc_eventlist
 {
     int count;
     int result_flags;   /* _NC_EVENT_TIMEOUT_MSEC or _NC_EVENT_FILE_READABLE */
-    _nc_event* events[1];
+    _nc_event*[1] events;
 }
 
 int wgetch_events(WINDOW* win, _nc_eventlist* nc);   /* experimental */

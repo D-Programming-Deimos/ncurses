@@ -145,17 +145,17 @@ immutable enum :chtype
 
 
 /* global variables */
-__gshared WINDOW*     stdscr;
-__gshared WINDOW*     curscr;
-__gshared WINDOW*     newscr;
-__gshared char[]      ttytype;
-__gshared int         COLORS;
-__gshared int         COLOR_PAIRS;
-__gshared int         LINES;
-__gshared int         COLS;
-__gshared int         TABSIZE;
-__gshared int         ESCDELAY;
-__gshared chtype[256] acs_map;
+extern __gshared WINDOW*     stdscr;
+extern __gshared WINDOW*     curscr;
+extern __gshared WINDOW*     newscr;
+extern __gshared char[]      ttytype;
+extern __gshared int         COLORS;
+extern __gshared int         COLOR_PAIRS;
+extern __gshared int         LINES;
+extern __gshared int         COLS;
+extern __gshared int         TABSIZE;
+extern __gshared int         ESCDELAY;
+extern __gshared chtype[256] acs_map;
 
 
 
@@ -946,7 +946,7 @@ int keyok(int keycode, bool enable);
 int resize_term(int lines, int columns);
 int resizeterm(int lines, int columns);
 //TODO check
-int set_delay(int i);
+int set_escdelay(int i);
 //TODO check
 int set_tabsize(int i);
 int use_default_colors();

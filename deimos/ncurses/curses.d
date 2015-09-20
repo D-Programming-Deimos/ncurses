@@ -946,7 +946,7 @@ int keyok(int keycode, bool enable);
 int resize_term(int lines, int columns);
 int resizeterm(int lines, int columns);
 //TODO check
-int set_delay(int i);
+int set_escdelay(int i);
 //TODO check
 int set_tabsize(int i);
 int use_default_colors();

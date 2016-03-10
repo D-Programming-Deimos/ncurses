@@ -829,7 +829,7 @@ int wattr_on(WINDOW* win, attr_t attrs, void* opts);
 int wattr_off(WINDOW* win, attr_t attrs, void* opts);
 int wattr_set(W:WINDOW, A:attr_t, S:short, V:void)
   (W* win, A attrs, S pair, V* opts)
-{   return win.attrs = (attrs & ~A_COLOR) | COLOR_PAIR(pair); }
+{   win.attrs = (attrs & ~A_COLOR) | COLOR_PAIR(pair); return OK; }
 int wbkgd(WINDOW* win, chtype ch);
 void wbkgdset(WINDOW* win, chtype ch);
 int wborder(WINDOW* win, chtype ls, chtype rs,

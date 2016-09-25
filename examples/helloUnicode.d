@@ -14,7 +14,7 @@
  * Modified by: Wyatt
  */
 import std.string:  toStringz;
-import std.c.locale;    // Need setlocale()
+import core.stdc.locale;    // Need setlocale()
 import deimos.ncurses.ncurses;
 
 void main()

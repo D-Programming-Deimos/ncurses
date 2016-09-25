@@ -1,8 +1,8 @@
-DC=rdmd -g -w --build-only -ofbin/$@ -I../ -L-lncursesw $^
+DC=rdmd -g -w --build-only -ofbin/$@ -I../source -L-lncursesw $^
 
 all: 	init helloUnicode helloWorld simpleColor simpleKey simpleSpectrum keyCode chgat acsVars printw simplePanel winBorder.d simpleMenu.d otherBorder mouseMenu scrollMenu attribMenu printBold
-	
-init: 
+
+init:
 	@echo "building all examples..."
 
 helloWorld: 	helloWorld.d
@@ -60,6 +60,6 @@ scrollMenu: 	scrollMenu.d
 attribMenu: 	attribMenu.d
 	$(DC)
 
-clean: 
+clean:
 	@rm bin/*
 	@echo "done."

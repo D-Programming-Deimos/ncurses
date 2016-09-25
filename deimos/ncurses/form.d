@@ -35,7 +35,7 @@
 module deimos.ncurses.form;
 
 
-import std.c.stdarg;
+import core.stdc.stdarg;
 public import deimos.ncurses.ncurses;
 public import deimos.ncurses.eti;
 

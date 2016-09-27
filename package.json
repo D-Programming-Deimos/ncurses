@@ -33,5 +33,26 @@
                     "formw"
             ]
         }
+    ],
+    "subPackages": [
+                    "examples/simplespectrum",
+                    "examples/attribmenu",
+                    "examples/otherborder",
+                    "examples/keycode",
+                    "examples/helloworld",
+                    "examples/simplemenu",
+                    "examples/printbold",
+                    "examples/mousemenu",
+                    "examples/chgat",
+                    "examples/scrollmenu",
+                    "examples/simplepanel",
+                    "examples/templeave",
+                    "examples/printw",
+                    "examples/winborder",
+                    "examples/simplekey",
+                    "examples/simplecolor",
+                    "examples/hellounicode",
+                    "examples/acsvars",
+                    "examples/form_attrib"
     ]
 }

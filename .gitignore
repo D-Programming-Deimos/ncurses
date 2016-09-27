@@ -1,5 +1,4 @@
-examples/bin
-examples/bin/*
+examples/*/bin
 
 *.o
 *.so

@@ -1,9 +1,16 @@
-before_install:
-    - sudo curl http://netcologne.dl.sourceforge.net/project/d-apt/files/d-apt.list -o /etc/apt/sources.list.d/d-apt.list
-    - sudo apt-get update && sudo apt-get -y --allow-unauthenticated install d-apt-keyring && sudo apt-get update
-    - sudo apt-get install dmd-bin libncursesw5 make
+language: d
+
+d:
+  - dmd
+  - ldc
+  - gdc
 
 script:
-    dmd -lib -L-lncursesw -oflibncurses-d deimos/ncurses/curses.d deimos/ncurses/eti.d deimos/ncurses/form.d deimos/ncurses/menu.d deimos/ncurses/ncurses.d deimos/ncurses/panel.d deimos/ncurses/unctrl.d
-
-    cd examples/ && make
+  - dub build
+  - dub build -c panels
+  - dub build -c full
+  - |
+    for E in examples/*/dub.json ; do
+      EXAMPLE="$(dirname ${E#*/})"
+      dub build "ncurses:$EXAMPLE"
+    done

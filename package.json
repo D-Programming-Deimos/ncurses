@@ -8,9 +8,30 @@
                     "Jude \"1100110\" Young"
     ],
     "license":      "ncurses",
-    "libs": [
-                    "ncursesw"
-    ],
     "targetType":   "staticLibrary",
     "targetName":   "ncurses-d",
+    "configurations": [
+        {
+            "name": "minimal",
+            "libs": [
+                    "ncursesw"
+                ]
+        },
+        {
+            "name": "panels",
+            "libs": [
+                    "ncursesw",
+                    "panelw"
+            ]
+        },
+        {
+            "name": "full",
+            "libs": [
+                    "ncursesw",
+                    "panelw",
+                    "menuw",
+                    "formw"
+            ]
+        }
+    ]
 }

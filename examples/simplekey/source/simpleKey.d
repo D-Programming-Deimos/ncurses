@@ -1,4 +1,3 @@
-#!/usr/bin/rdmd -L-lncursesw
 //This does NOT loop properly.
 import deimos.ncurses.ncurses;
 import std.conv:    to;

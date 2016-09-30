@@ -1,7 +1,6 @@
-#!/usr/bin/rdmd -L-lmenu
 import deimos.ncurses.menu;
 import std.conv:    to;
-pragma(lib, "menu");
+
 const int CTRLD = 4;
 
 immutable char[][] choices = [  "Choice 1",

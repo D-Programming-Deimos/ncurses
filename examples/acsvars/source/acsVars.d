@@ -1,4 +1,3 @@
-#!/usr/bin/rdmd -L-lncurses
 import std.string: toStringz;
 import deimos.ncurses.curses;
 

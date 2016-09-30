@@ -1,9 +1,5 @@
-#!/usr/bin/rdmd -L-lmenu
 import std.conv:    to;
 import deimos.ncurses.menu;
-
-pragma(lib, "ncurses");
-pragma(lib, "menu");
 
 enum CTRLD = 4;
 immutable char[][] choices = [  "Choice 1",

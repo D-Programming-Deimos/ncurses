@@ -1,4 +1,3 @@
-#!/usr/bin/rdmd -L-lncursesw
 //simple_spectrum: Sample of 256-colour ncurses output in D.
 //Modified by: Wyatt
 

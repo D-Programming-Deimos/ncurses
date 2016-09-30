@@ -1,4 +1,3 @@
-#!/usr/bin/rdmd -L-lncurses
 //Modified by: 1100110
 
 import std.conv:    to;

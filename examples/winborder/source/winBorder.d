@@ -1,4 +1,3 @@
-#!/usr/bin/rdmd -L-lncursesw
 //Modified by: 1100110
 
 import std.string:  toStringz;

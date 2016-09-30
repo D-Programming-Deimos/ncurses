@@ -1,4 +1,3 @@
-#!/usr/bin/rdmd -L-lncursesw
 /**  hello_unicode.d
  *
  * This is a demonstration of Unicode output with ncurses in D.

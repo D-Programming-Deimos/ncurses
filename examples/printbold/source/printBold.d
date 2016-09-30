@@ -1,4 +1,3 @@
-#!/usr/bin/rdmd -L-lncursesw
 /* This is rather interesting, it prints the bold version
  * of whatever you type on the screen.
  *

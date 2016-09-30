@@ -1,9 +1,4 @@
-#!/usr/bin/env rdmd
-
 import deimos.ncurses.panel;
-
-pragma(lib, "ncurses");
-pragma(lib, "panel");
 
 int main()
 {	

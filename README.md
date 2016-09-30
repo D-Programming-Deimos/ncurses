@@ -1,6 +1,6 @@
 Ncurses
 =======
-[![Build Status](https://travis-ci.org/1100110/ncurses.png?branch=master)](https://travis-ci.org/1100110/ncurses)
+[![Build Status](https://travis-ci.org/D-Programming-Deimos/ncurses.svg?branch=master)](https://travis-ci.org/D-Programming-Deimos/ncurses)
 
 
 This is currently in BETA.

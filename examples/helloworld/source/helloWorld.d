@@ -1,4 +1,4 @@
-/**  hello_world.d
+/**
  *
  * I'm assuming that you are starting here, so I've included
  * lots of info.  These build, so I won't explain everything over and over.
@@ -11,15 +11,16 @@
  *
  * Modified by: 1100110
  */
-import std.string:  toStringz;
+import std.string : toStringz;
 import deimos.ncurses;
 
 void main()
-{   //toStringz returns immutable char*   Which is what most of these
-    //functions expect.  I had to modify things a bit to get that to
-    //work as nicely as it does.
-    //D string d = "stuff" will never work with these functions.
-    //they expect char*  see below.
+{
+    // toStringz returns immutable char*, which is what most of these
+    // functions expect. I had to modify things a bit to get that to
+    // work as nicely as it does.
+    // D string d = "stuff" will never work with these functions.
+    // they expect char*  see below.
     immutable hello = toStringz("Hello ncurses World!\nPress any key to continue...");
 
     /* D char[]s are not 0 terminated, so you'll probably want to do that manually
@@ -30,15 +31,16 @@ void main()
      * embedded 0's in the string already.
      */
 
-    initscr();              //initialize the screen
-    scope(exit) endwin();   //always exit cleanly
-    printw(hello);          //prints the char[] hello to the screen
-    refresh();              //actually does the writing to the physical screen
+    initscr();     // initialize the screen
+    scope (exit)
+        endwin();  // always exit cleanly
+    printw(hello); // prints the char[] hello to the screen
+    refresh();     // actually does the writing to the physical screen
 
-    getch();                //gets a single character from the screen.
-                            //here it is just used to hold the terminal open.
+    getch();       // gets a single character from the screen.
+                   // here it is just used to hold the terminal open.
 
-    endwin();               //Routine to call before exiting, or leaving curses mode temporarily
-    //failure to endwin() seems to clear all terminal history
-    //as well as other bad things.  just endwin().
+    endwin();      // Routine to call before exiting, or leaving curses mode temporarily
+                   // failure to endwin() seems to clear all terminal history
+                   // as well as other bad things. just endwin().
 }

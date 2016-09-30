@@ -1,15 +1,17 @@
-import std.string: toStringz;
+import std.string : toStringz;
 import deimos.ncurses.curses;
 
 void main()
 {
     initscr();
-    scope(exit)     endwin();
-    scope(failure)  endwin();
-    //Please note: you might want to maximize your terminal before you try to
-    //run this.  It does not check the size or enable scrolling.
-    //In other word, if your terminal is <= 23 by 79, it will do weird things.
-    //The spaces are for readability on the screen when you run the program.
+    scope (exit)
+        endwin();
+    scope (failure)
+        endwin();
+    // Please note: you might want to maximize your terminal before you try to
+    // run this.  It does not check the size or enable scrolling.
+    // In other word, if your terminal is <= 23 by 79, it will do weird things.
+    // The spaces are for readability on the screen when you run the program.
 
     printw(toStringz("Upper left corner           "));
     addch(ACS_ULCORNER());

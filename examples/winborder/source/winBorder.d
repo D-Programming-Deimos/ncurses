@@ -1,8 +1,7 @@
 //Modified by: 1100110
 
-import std.string:  toStringz;
+import std.string : toStringz;
 import deimos.ncurses.ncurses;
-
 
 void main()
 {
@@ -10,43 +9,44 @@ void main()
     int startx, starty, width, height;
     int ch;
 
-    initscr();          //Start curses mode
-    scope(exit)     endwin();
-    cbreak();           //Line buffering disabled, Pass on everty thing to me
-    keypad(stdscr, true);       //I need that nifty F1
+    initscr();                // Start curses mode
+    scope (exit)
+        endwin();
+    cbreak();                 // Line buffering disabled, Pass on everty thing to me
+    keypad(stdscr, true);     // I need that nifty F1
 
     height = 3;
     width = 10;
-    starty = (LINES - height)   / 2;    //Calculating for a center placement
-    startx = (COLS - width)     / 2;    //of the window
+    starty = (LINES - height) / 2; // Calculating for a center placement
+    startx = (COLS - width) / 2;   // of the window
     printw(toStringz("Press F1 to exit"));
     refresh();
     my_win = create_newwin(height, width, starty, startx);
 
-    while((ch = getch()) != KEY_F(1))
+    while ((ch = getch()) != KEY_F(1))
     {
-        switch(ch)
+        switch (ch)
         {
-            case KEY_LEFT:
-                destroy_win(my_win);
-                my_win = create_newwin(height, width, starty,--startx);
-                break;
-            case KEY_RIGHT:
-                destroy_win(my_win);
-                my_win = create_newwin(height, width, starty,++startx);
-                break;
-            case KEY_UP:
-                destroy_win(my_win);
-                my_win = create_newwin(height, width, --starty,startx);
-                break;
-            case KEY_DOWN:
-                destroy_win(my_win);
-                my_win = create_newwin(height, width, ++starty,startx);
-                break;
-            default:
-                break;
-        }//switch-case
-    }//while()
+        case KEY_LEFT:
+            destroy_win(my_win);
+            my_win = create_newwin(height, width, starty, --startx);
+            break;
+        case KEY_RIGHT:
+            destroy_win(my_win);
+            my_win = create_newwin(height, width, starty, ++startx);
+            break;
+        case KEY_UP:
+            destroy_win(my_win);
+            my_win = create_newwin(height, width, --starty, startx);
+            break;
+        case KEY_DOWN:
+            destroy_win(my_win);
+            my_win = create_newwin(height, width, ++starty, startx);
+            break;
+        default:
+            break;
+        } //switch-case
+    } //while()
 }
 
 WINDOW* create_newwin(int height, int width, int starty, int startx)
@@ -54,10 +54,10 @@ WINDOW* create_newwin(int height, int width, int starty, int startx)
     WINDOW* local_win;
 
     local_win = newwin(height, width, starty, startx);
-    box(local_win, A_NORMAL , A_NORMAL);    //0, 0 gives default characters
-                                            //for the vertical and horizontal
-                                            //lines
-    wrefresh(local_win);                    //Show that box
+    box(local_win, A_NORMAL , A_NORMAL);    // 0, 0 gives default characters
+                                            // for the vertical and horizontal
+                                            // lines
+    wrefresh(local_win);                    // Show that box
 
     return local_win;
 }
@@ -68,7 +68,7 @@ void destroy_win(WINDOW* local_win)
      * result of erasing the window. It will leave it's four corners
      * and so an ugly remnant of window.
      */
-    wborder(local_win, ' ', ' ', ' ',' ',' ',' ',' ',' ');
+    wborder(local_win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
     /* The parameters taken are
      * 1. win: the window on which to operate
      * 2. ls: character to be used for the left side of the window

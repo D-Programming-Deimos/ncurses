@@ -1,4 +1,4 @@
-import std.conv:    to;
+import std.conv : to;
 import deimos.ncurses.menu;
 
 enum CTRLD = 4;
@@ -17,7 +17,8 @@ void main()
     ITEM* cur_item;
 
     initscr();
-    scope(exit)     endwin();
+    scope (exit)
+        endwin();
     cbreak();
     noecho();
     keypad(stdscr, true);
@@ -25,8 +26,8 @@ void main()
     n_choices = choices.length;
     my_items.length = n_choices + 1;
 
-    foreach(i; 0..n_choices)
-            my_items[i] = new_item((choices[i]~'\0').ptr, (choices[i]~'\0').ptr);
+    foreach (i; 0 .. n_choices)
+        my_items[i] = new_item((choices[i] ~ '\0').ptr, (choices[i] ~ '\0').ptr);
 
     my_items[n_choices] = null;
 
@@ -35,16 +36,18 @@ void main()
     post_menu(my_menu);
     refresh();
 
-    while((c = getch()) != KEY_F(1))
-    {   switch(c)
-        {   case KEY_DOWN:
-                menu_driver(my_menu, REQ_DOWN_ITEM);
-                break;
-            case KEY_UP:
-                menu_driver(my_menu, REQ_UP_ITEM);
-                break;
-            default:
-                break;
+    while ((c = getch()) != KEY_F(1))
+    {
+        switch (c)
+        {
+        case KEY_DOWN:
+            menu_driver(my_menu, REQ_DOWN_ITEM);
+            break;
+        case KEY_UP:
+            menu_driver(my_menu, REQ_UP_ITEM);
+            break;
+        default:
+            break;
         }
     }
 
@@ -52,4 +55,3 @@ void main()
     free_item(my_items[1]);
     free_menu(my_menu);
 }
-

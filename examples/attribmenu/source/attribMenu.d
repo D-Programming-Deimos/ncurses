@@ -1,5 +1,5 @@
 import deimos.ncurses.menu;
-import std.conv:    to;
+import std.conv : to;
 
 const int CTRLD = 4;
 
@@ -23,18 +23,18 @@ int main()
     /* Initialize curses */
     initscr();
     start_color();
-        cbreak();
-        noecho();
+    cbreak();
+    noecho();
     keypad(stdscr, true);
     init_pair(1, COLOR_RED, COLOR_BLACK);
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
     init_pair(3, COLOR_MAGENTA, COLOR_BLACK);
 
     /* Initialize items */
-        n_choices = choices.length.to!int;
-        my_items.length = n_choices + 1;
-        for(i = 0; i < n_choices; ++i)
-                my_items[i] = new_item((choices[i]~'\0').ptr, (choices[i]~'\0').ptr);
+    n_choices = choices.length.to!int;
+    my_items.length = n_choices + 1;
+    for (i = 0; i < n_choices; ++i)
+        my_items[i] = new_item((choices[i] ~ '\0').ptr, (choices[i] ~ '\0').ptr);
     my_items[n_choices] = null;
     item_opts_off(my_items[3], O_SELECTABLE);
     item_opts_off(my_items[6], O_SELECTABLE);
@@ -53,31 +53,31 @@ int main()
     post_menu(my_menu);
     refresh();
 
-    while((c = getch()) != KEY_F(1))
-    {       switch(c)
-            {   case KEY_DOWN:
-                menu_driver(my_menu, REQ_DOWN_ITEM);
-                break;
-            case KEY_UP:
-                menu_driver(my_menu, REQ_UP_ITEM);
-                break;
-            case 10: /* Enter */
-                move(20, 0);
-                clrtoeol();
-                mvprintw(20, 0, "Item selected is : %s",
-                        item_name(current_item(my_menu)));
-                pos_menu_cursor(my_menu);
-                break;
-                        default:
-                                break;
+    while ((c = getch()) != KEY_F(1))
+    {
+        switch (c)
+        {
+        case KEY_DOWN:
+            menu_driver(my_menu, REQ_DOWN_ITEM);
+            break;
+        case KEY_UP:
+            menu_driver(my_menu, REQ_UP_ITEM);
+            break;
+        case 10: /* Enter */
+            move(20, 0);
+            clrtoeol();
+            mvprintw(20, 0, "Item selected is : %s", item_name(current_item(my_menu)));
+            pos_menu_cursor(my_menu);
+            break;
+        default:
+            break;
         }
     }
     unpost_menu(my_menu);
-    for(i = 0; i < n_choices; ++i)
+    for (i = 0; i < n_choices; ++i)
         free_item(my_items[i]);
     free_menu(my_menu);
     endwin();
 
-        return 0;
+    return 0;
 }
-

@@ -1,4 +1,4 @@
-/**  hello_unicode.d
+/**
  *
  * This is a demonstration of Unicode output with ncurses in D.
  * The functionality of this code is otherwise identical to hello_world.d
@@ -12,8 +12,8 @@
  *
  * Modified by: Wyatt
  */
-import std.string:  toStringz;
-import core.stdc.locale;    // Need setlocale()
+import std.string : toStringz;
+import core.stdc.locale; // Need setlocale()
 import deimos.ncurses.ncurses;
 
 void main()
@@ -25,11 +25,12 @@ void main()
 
     immutable hello = toStringz("日本語からの「Hello World!」");
 
-    initscr();              //initialize the screen
-    scope(exit) endwin();   //for the love of all that is holy, alway exit cleanly.
+    initscr();              // initialize the screen
+    scope(exit)
+        endwin();           // for the love of all that is holy, alway exit cleanly.
 
-    printw(hello);          //prints the char[] hello to the screen
-    refresh();              //actually does the writing to the physical screen
+    printw(hello);          // prints the char[] hello to the screen
+    refresh();              // actually does the writing to the physical screen
 
-    getch();                //gets a single character from the screen.
+    getch();                // gets a single character from the screen.
 }

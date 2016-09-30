@@ -20,7 +20,7 @@ void main()
 {
     setlocale(LC_CTYPE,""); // You need to set the empty locale to use upper-plane glyphs
                             // This sets the locale based on local variables. On most Unix-
-                            // like systems, you can use the `locale` command to show the 
+                            // like systems, you can use the `locale` command to show the
                             // current settings for your environment.
 
     immutable hello = toStringz("日本語からの「Hello World!」");

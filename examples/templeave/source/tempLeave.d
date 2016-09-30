@@ -6,7 +6,7 @@ import deimos.ncurses.ncurses;
 extern(C) int system(immutable char* command);
 
 void main()
-{	
+{
 	initscr();								//Start curses mode
         scope(failure)  endwin();
         scope(exit)     endwin();
@@ -22,6 +22,6 @@ void main()
 	refresh();			//Do refresh() to restore the screen contents
 
 	printw(toStringz("Another String\n"));	//Back to curses use the full capabilities
-	refresh();			
+	refresh();
 	getch();
 }

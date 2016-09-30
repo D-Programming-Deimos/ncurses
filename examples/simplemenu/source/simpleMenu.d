@@ -9,7 +9,7 @@ immutable char[][] choices = [  "Choice 1",
                                 "Exit"  ];
 
 void main()
-{   
+{
     ITEM*[] my_items;
     int c;
     MENU* my_menu;

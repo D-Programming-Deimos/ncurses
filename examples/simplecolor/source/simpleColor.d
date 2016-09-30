@@ -8,7 +8,7 @@ import deimos.ncurses.ncurses;
 int main() {
     initscr();
     scope(failure)  endwin();
-    scope(exit)     endwin(); 
+    scope(exit)     endwin();
 
 
     if(has_colors() == false) {

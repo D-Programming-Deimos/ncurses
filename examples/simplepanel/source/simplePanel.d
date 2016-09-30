@@ -1,7 +1,7 @@
 import deimos.ncurses.panel;
 
 int main()
-{	
+{
     WINDOW*[3] my_wins;
     PANEL*[3]  my_panels;
     immutable lines = 10, cols = 40, y = 2, x = 4;
@@ -18,7 +18,7 @@ int main()
     my_wins[1] = newwin(lines, cols, y + 1, x + 5);
     my_wins[2] = newwin(lines, cols, y + 2, x + 10);
 
-    /* 
+    /*
      * Create borders around the windows so that you can see the effect
      * of panels
      */
@@ -35,7 +35,7 @@ int main()
 
     /* Show it on the screen */
     doupdate();
-    
+
     getch();
 
     return 0;

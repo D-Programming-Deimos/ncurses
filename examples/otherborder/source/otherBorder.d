@@ -1,5 +1,5 @@
 import std.string : toStringz;
-import deimos.ncurses.ncurses;
+import deimos.ncurses;
 
 struct WIN_BORDER
 {

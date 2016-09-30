@@ -1,6 +1,6 @@
 //Modified by: 1100110
 import std.stdio : writefln;
-import deimos.ncurses.ncurses;
+import deimos.ncurses;
 
 void main()
 {

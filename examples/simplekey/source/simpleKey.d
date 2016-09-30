@@ -1,5 +1,5 @@
 //This does NOT loop properly.
-import deimos.ncurses.ncurses;
+import deimos.ncurses;
 import std.conv : to;
 
 enum WIDTH = 30;

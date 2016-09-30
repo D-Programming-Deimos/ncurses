@@ -1,6 +1,6 @@
 import std.string : toStringz;
 import std.conv : to;
-import deimos.ncurses.ncurses;
+import deimos.ncurses;
 
 void main()
 {

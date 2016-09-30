@@ -1,7 +1,7 @@
 // simple_spectrum: Sample of 256-colour ncurses output in D.
 // Modified by: Wyatt
 
-import deimos.ncurses.ncurses;
+import deimos.ncurses;
 import std.stdio : writeln;
 import std.conv : to;
 

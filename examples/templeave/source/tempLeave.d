@@ -1,7 +1,7 @@
 //Modified by: 1100110
 
 import std.string : toStringz;
-import deimos.ncurses.ncurses;
+import deimos.ncurses;
 
 extern (C) int system(immutable char* command);
 

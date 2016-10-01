@@ -34,6 +34,7 @@ To run the examples, change to the specific directory and build and execute the 
 
 ### Panels
   - panel_simple - A simple panel example
+  - ptest        - Panel test from PDCurses, shows moving, hiding and layering of panels (N)
 
 
 ## TODO

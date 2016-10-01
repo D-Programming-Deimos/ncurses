@@ -53,6 +53,7 @@
                     "examples/menu_attrib",
                     "examples/menu_scroll",
                     "examples/menu_simple",
-                    "examples/panel_simple"
+                    "examples/panel_simple",
+                    "examples/ptest"
     ]
 }

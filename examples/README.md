@@ -9,31 +9,31 @@ To run the examples, change to the specific directory and build and execute the 
 ## Examples
 
 ### Basics
-  - acsvars      - ACS variables example
-  - chgat        - chgat() usage example
+  - acs_vars     - ACS variables example
   - hellounicode - a simple unicode example (N)
-  - helloworld   - a simple hello world example
-  - keycode      - returns the number code of the key you pressed
-  - mousemenu    - A menu accessible by mouse
-  - otherborder  - Shows usage of other border functions apart from box()
+  - hello_world  - a simple hello world example
+  - key_code     - returns the number code of the key you pressed
+  - mouse_menu   - A menu accessible by mouse
+  - other_border - Shows usage of other border functions apart from box()
   - printbold    - Gets a single character and displays it in bold (N)
-  - printw       - A very simple printw() example
-  - simplecolor  - a simple example that demonstrates color output
-  - simplekey    - A menu accessible with keyboard UP, DOWN  arrows
-  - simplespectrum  - Sample of 256-colour output (N)
-  - templeave    - Demonstrates temporarily leaving curses mode
-  - winborder    - Shows Creation of windows and borders
+  - printw_example - A very simple printw() example
+  - simple_color - a simple example that demonstrates color output
+  - simple_key   - A menu accessible with keyboard UP, DOWN  arrows
+  - simplespectrum - Sample of 256-colour output (N)
+  - temp_leave   - Demonstrates temporarily leaving curses mode
+  - win_border   - Shows Creation of windows and borders
+  - with_chgat   - chgat() usage example
 
 ### Forms
   - form_attrib  - Form attributes example
 
 ### Menus
-  - attribmenu   - Usage of menu attributes
-  - scrollmenu   - Demonstrates scrolling capability of menus
-  - simplemenu   - A simple menu accessed by arrow keys
+  - menu_attrib  - Usage of menu attributes
+  - menu_scroll  - Demonstrates scrolling capability of menus
+  - menu_simple  - A simple menu accessed by arrow keys
 
 ### Panels
-  - simplepanel  - A simple panel example
+  - panel_simple - A simple panel example
 
 
 ## TODO

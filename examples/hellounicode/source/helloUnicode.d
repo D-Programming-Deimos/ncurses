@@ -1,5 +1,4 @@
-#!/usr/bin/rdmd -L-lncursesw
-/**  hello_unicode.d
+/**
  *
  * This is a demonstration of Unicode output with ncurses in D.
  * The functionality of this code is otherwise identical to hello_world.d
@@ -13,24 +12,25 @@
  *
  * Modified by: Wyatt
  */
-import std.string:  toStringz;
-import core.stdc.locale;    // Need setlocale()
-import deimos.ncurses.ncurses;
+import std.string : toStringz;
+import core.stdc.locale; // Need setlocale()
+import deimos.ncurses;
 
 void main()
 {
     setlocale(LC_CTYPE,""); // You need to set the empty locale to use upper-plane glyphs
                             // This sets the locale based on local variables. On most Unix-
-                            // like systems, you can use the `locale` command to show the 
+                            // like systems, you can use the `locale` command to show the
                             // current settings for your environment.
 
     immutable hello = toStringz("日本語からの「Hello World!」");
 
-    initscr();              //initialize the screen
-    scope(exit) endwin();   //for the love of all that is holy, alway exit cleanly.
+    initscr();              // initialize the screen
+    scope(exit)
+        endwin();           // for the love of all that is holy, alway exit cleanly.
 
-    printw(hello);          //prints the char[] hello to the screen
-    refresh();              //actually does the writing to the physical screen
+    printw(hello);          // prints the char[] hello to the screen
+    refresh();              // actually does the writing to the physical screen
 
-    getch();                //gets a single character from the screen.
+    getch();                // gets a single character from the screen.
 }

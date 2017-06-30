@@ -1,9 +1,21 @@
 language: d
 
+os:
+  - linux
+  - osx
+
 d:
   - dmd
   - ldc
   - gdc
+
+matrix:
+  exclude:
+  - os: osx
+    d: gdc
+
+before_install:
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install ncurses; fi
 
 script:
   - dub build

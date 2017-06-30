@@ -10,6 +10,7 @@
     "license":      "ncurses",
     "targetType":   "staticLibrary",
     "targetName":   "ncurses-d",
+    "lflags-osx":   ["-L/usr/local/opt/ncurses/lib"],
     "configurations": [
         {
             "name": "minimal",

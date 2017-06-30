@@ -28,6 +28,17 @@ To use a specific configuration in your projects, depend on this package by addi
 }
 ```
 
+Building on macOS
+-----------------
+
+The stock ncurses libraries on macOS don't include the wide libraries. Thus the full ncurses version needs to be installed with [Homebrew](https://brew.sh/). Homebrew installs ncurses below ```/usr/local/opt/ncurses```, where the dub configuration will pick it up.
+
+First install Homebrew using the instructions on the web site, then you can add the ncurses package with
+
+````
+brew install ncurses
+````
+
 WARNINGS & PRECAUTIONS
 ----------------------
 What files make up the 'official' ncurses package?

@@ -922,7 +922,6 @@ int getpary(U:WINDOW*)(U win)
 /*
  * vid_attr() was implemented originally based on a draft of X/Open curses.
  */
- //TODO check...
 int vid_attr(chtype a, ...)
 {   return vidattr(a); }
 

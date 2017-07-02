@@ -43,7 +43,6 @@ import core.stdc.stddef;    /* we want wchar_t */
 import core.stdc.stdarg;    /* we need va_list */
 import core.stdc.config; /* we need c_ulong */
 
-//#include <ncursesw/unctrl.h>
 public import deimos.ncurses.unctrl;
 
 //TODO check if needed... I don't have a windows machine...

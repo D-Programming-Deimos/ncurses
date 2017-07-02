@@ -162,12 +162,6 @@ MENU* new_menu(ITEM** items);
 
 OPTIONS item_opts(const ITEM* item);
 OPTIONS menu_opts(const MENU* menuVar);
-//TODO check I think it needs to return a MENU, this was fine whan MENU was a void..
-//Holy crap, using a function pointer to get around the fact that MENU isn't defined...
-//void* function(MENU*) item_init(const MENU* menuVar);
-//void* function(MENU*) item_term(const MENU* menuVar);
-//void* function(MENU*) menu_init(const MENU* menuVar);
-//void* function(MENU*) menu_term(const MENU* menuVar);
 MENU* item_init(const MENU* menuVar);
 MENU* item_term(const MENU* menuVar);
 MENU* menu_init(const MENU* menuVar);

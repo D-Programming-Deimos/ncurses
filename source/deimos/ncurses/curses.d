@@ -945,7 +945,6 @@ int key_defined(char* definition);
 int keyok(int keycode, bool enable);
 int resize_term(int lines, int columns);
 int resizeterm(int lines, int columns);
-//TODO check
 int set_escdelay(int i);
 //TODO check
 int set_tabsize(int i);

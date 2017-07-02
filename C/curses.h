@@ -880,7 +880,6 @@ extern NCURSES_EXPORT(int) key_defined (const char *);
 extern NCURSES_EXPORT(int) keyok (int, bool);
 extern NCURSES_EXPORT(int) resize_term (int, int);
 extern NCURSES_EXPORT(int) resizeterm (int, int);
-//TODO implement
 extern NCURSES_EXPORT(int) set_escdelay (int);
 extern NCURSES_EXPORT(int) set_tabsize (int);
 //end

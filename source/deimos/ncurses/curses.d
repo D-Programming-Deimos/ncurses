@@ -783,7 +783,6 @@ int untouchwin(W:WINDOW)(W* win)
 {   return wtouchln(win, 0, getmaxy(win), 0); }
 void use_env(bool f);
 int vidattr(chtype c);
-//TODO check this.
 int vidputs(chtype, int function(int));
 int vline(C:chtype, N:int)(C ch, N n)
 {   return wvline(stdscr, ch, n); }

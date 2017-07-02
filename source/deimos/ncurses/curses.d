@@ -415,9 +415,6 @@ int border(C:chtype)(C ls, C rs, C ts, C bs, C tl, C tr, C bl, C br)
 {   return wborder(stdscr, ls, rs, ts, bs, tl, tr, bl, br);   }
 int box(W:WINDOW, C:chtype)(W* win, C verch, C horch)
 {   return wborder(win, verch, verch, horch, horch, 0, 0, 0, 0);  }
-//TODO is this needed?
-int box(W:WINDOW, C:int)(W* win, C verch, C horch)
-{   return wborder(win, verch, verch, horch, horch, 0, 0, 0, 0);  }
 bool can_change_color();
 int cbreak();
 int chgat(N:int, A:attr_t, S:short, V:void)(N n, A attr, S color, V* opts)

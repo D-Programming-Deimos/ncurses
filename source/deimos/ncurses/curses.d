@@ -429,9 +429,8 @@ int clrtoeol()()
 int color_content(short color, short* r, short* g, short* b);
 int color_set(N:short, V:void)(N color_pair_number, V* opts)
 {   return wcolor_set(stdscr, color_pair_number, opts);   }
-//TODO look at this, might be able to be rewritten using NCURSES_BITS
 chtype COLOR_PAIR(N:int)(N n)
-{   return cast(chtype)(n<<8);    }
+{   return NCURSES_BITS(n, 0); }
 int copywin(WINDOW* srcwin, WINDOW* dstwin, int sminrow,
      int smincol, int dminrow, int dmincol, int dmaxrow,
      int dmaxcol, int overlay);

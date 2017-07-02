@@ -43,7 +43,6 @@ import core.stdc.stddef;    /* we want wchar_t */
 import core.stdc.stdarg;    /* we need va_list */
 import core.stdc.config; /* we need c_ulong */
 
-//#include <ncursesw/unctrl.h>
 public import deimos.ncurses.unctrl;
 
 //TODO check if needed... I don't have a windows machine...
@@ -416,9 +415,6 @@ int border(C:chtype)(C ls, C rs, C ts, C bs, C tl, C tr, C bl, C br)
 {   return wborder(stdscr, ls, rs, ts, bs, tl, tr, bl, br);   }
 int box(W:WINDOW, C:chtype)(W* win, C verch, C horch)
 {   return wborder(win, verch, verch, horch, horch, 0, 0, 0, 0);  }
-//TODO is this needed?
-int box(W:WINDOW, C:int)(W* win, C verch, C horch)
-{   return wborder(win, verch, verch, horch, horch, 0, 0, 0, 0);  }
 bool can_change_color();
 int cbreak();
 int chgat(N:int, A:attr_t, S:short, V:void)(N n, A attr, S color, V* opts)
@@ -433,9 +429,8 @@ int clrtoeol()()
 int color_content(short color, short* r, short* g, short* b);
 int color_set(N:short, V:void)(N color_pair_number, V* opts)
 {   return wcolor_set(stdscr, color_pair_number, opts);   }
-//TODO look at this, might be able to be rewritten using NCURSES_BITS
 chtype COLOR_PAIR(N:int)(N n)
-{   return cast(chtype)(n<<8);    }
+{   return NCURSES_BITS(n, 0); }
 int copywin(WINDOW* srcwin, WINDOW* dstwin, int sminrow,
      int smincol, int dminrow, int dmincol, int dmaxrow,
      int dmaxcol, int overlay);
@@ -788,7 +783,6 @@ int untouchwin(W:WINDOW)(W* win)
 {   return wtouchln(win, 0, getmaxy(win), 0); }
 void use_env(bool f);
 int vidattr(chtype c);
-//TODO check this.
 int vidputs(chtype, int function(int));
 int vline(C:chtype, N:int)(C ch, N n)
 {   return wvline(stdscr, ch, n); }
@@ -923,7 +917,6 @@ int getpary(U:WINDOW*)(U win)
 /*
  * vid_attr() was implemented originally based on a draft of X/Open curses.
  */
- //TODO check...
 int vid_attr(chtype a, ...)
 {   return vidattr(a); }
 
@@ -945,7 +938,6 @@ int key_defined(char* definition);
 int keyok(int keycode, bool enable);
 int resize_term(int lines, int columns);
 int resizeterm(int lines, int columns);
-//TODO check
 int set_escdelay(int i);
 //TODO check
 int set_tabsize(int i);

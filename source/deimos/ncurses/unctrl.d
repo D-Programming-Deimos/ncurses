@@ -43,7 +43,6 @@ module deimos.ncurses.unctrl;
 
 /* $Id: unctrl.h.in,v 1.11 2009/04/18 21:00:52 tom Exp $ */
 
-//#include <ncursesw/curses.h>
 string NCURSES_VERSION = "5.7";
 alias uint chtype;
 extern (C) char* unctrl(chtype);

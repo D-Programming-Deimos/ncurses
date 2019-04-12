@@ -38,7 +38,7 @@ module deimos.ncurses.panel;
 
 public import deimos.ncurses.curses;
 
-extern (C)
+extern (C) @nogc
 {
 
 struct PANEL

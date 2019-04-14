@@ -925,8 +925,8 @@ int vid_attr(chtype a, ...)
  * These functions are extensions - not in X/Open Curses.
  */
  //TODO Check
-alias int function(WINDOW *, void *) NCURSES_WINDOW_CB;
-alias int function(SCREEN *, void *) NCURSES_SCREEN_CB;
+alias int function(WINDOW *, void *) @nogc NCURSES_WINDOW_NOGC_CB;
+alias int function(SCREEN *, void *) @nogc NCURSES_SCREEN_NOGC_CB;
 
 bool is_term_resized(int lines, int columns);
 char* keybound(int keycode, int count);
@@ -945,8 +945,8 @@ int use_default_colors();
 int use_extended_names(bool enable);
 int use_legacy_coding(int i);
 //TODO check, I might not have gotten the function pointer alias correct.
-int use_screen(SCREEN* scr, NCURSES_SCREEN_CB, void* v);
-int use_window(WINDOW* win, NCURSES_WINDOW_CB, void* v);
+int use_screen(SCREEN* scr, NCURSES_SCREEN_NOGC_CB, void* v);
+int use_window(WINDOW* win, NCURSES_WINDOW_NOGC_CB, void* v);
 int wresize(WINDOW* win, int lines, int columns);
 void nofilter();
 
@@ -1492,3 +1492,13 @@ body
 }
 
 }//end extern (C)
+
+// This block is for functions that can require some GC to work.
+extern (C) nothrow
+{
+alias int function(WINDOW *, void *) NCURSES_WINDOW_CB;
+alias int function(SCREEN *, void *) NCURSES_SCREEN_CB;
+
+int use_screen(SCREEN* scr, NCURSES_SCREEN_CB, void* v);
+int use_window(WINDOW* win, NCURSES_WINDOW_CB, void* v);
+}

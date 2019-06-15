@@ -554,7 +554,7 @@ int mvinsstr(N:int, C:char)(N y, N x, C* str)
 int mvinstr(N:int, C:char)(N y, N x, C* str)
 {   return mvwinstr(stdscr, y, x, str);   }
 int mvprintw(int y, int x, const char* fmt, ...);
-int mvscanw(int y, int x, char* fmt, ...);
+int mvscanw(int y, int x, const char* fmt, ...);
 int mvvline(N:int, C:chtype)(N y, N x, C ch, N n)
 {   return mvwvline(stdscr, y, x, ch, n); }
 int mvwaddch(W:WINDOW, N:int, C:chtype)(W* win, N y, N x, C ch)
@@ -678,7 +678,7 @@ int mvwinstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, C* str)
   return winstr(win, str);
 }
 int mvwprintw(WINDOW* win, int y, int x, const char* fmt, ...);
-int mvwscanw(WINDOW* win, int y, int x, char* fmt, ...);
+int mvwscanw(WINDOW* win, int y, int x, const char* fmt, ...);
 int mvwvline(W:WINDOW, N:int, C:chtype)(W* win, N y, N x, C ch, N n)
 {
   if(wmove(win, y, x) == ERR)
@@ -722,7 +722,7 @@ int reset_shell_mode();
 //TODO
 __gshared int function(int line, int function(WINDOW* win, int cols) init) ripoffline;
 int savetty();
-int scanw(char* fmt, ...);
+int scanw(const char* fmt, ...);
 int scr_dump(char *filename);
 int scr_init(char *filename);
 int scrl(N:int)(N n)
@@ -864,7 +864,7 @@ int wnoutrefresh(WINDOW* win);
 int wprintw(WINDOW* win, const char* fmt, ...);
 int wredrawln(WINDOW* win, int beg_line, int num_lines);
 int wrefresh(WINDOW* win);
-int wscanw(WINDOW* win, char* fmt, ...);
+int wscanw(WINDOW* win, const char* fmt, ...);
 int wscrl(WINDOW *win, int n);
 int wsetscrreg(WINDOW* win, int top, int bot);
 int wstandout(W:WINDOW)(W* win)

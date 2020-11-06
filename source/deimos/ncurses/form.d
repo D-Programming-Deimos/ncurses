@@ -39,7 +39,7 @@ import core.stdc.stdarg;
 public import deimos.ncurses.ncurses;
 public import deimos.ncurses.eti;
 
-extern(C)
+extern(C) @nogc
 {
 
 alias void* FIELD_CELL;

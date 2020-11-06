@@ -35,7 +35,7 @@ module deimos.ncurses.menu;
 public import deimos.ncurses.curses,
 	      deimos.ncurses.eti;
 
-extern(C)
+extern(C) @nogc
 {
 
 alias int Menu_Options;

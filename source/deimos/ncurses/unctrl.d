@@ -45,7 +45,7 @@ module deimos.ncurses.unctrl;
 
 string NCURSES_VERSION = "5.7";
 alias uint chtype;
-extern (C) char* unctrl(chtype);
+extern (C) char* unctrl(chtype) @nogc;
 
 
 /* NCURSES_UNCTRL_H_incl */

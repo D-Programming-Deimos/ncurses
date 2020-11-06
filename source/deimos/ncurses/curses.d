@@ -65,7 +65,7 @@ immutable enum
 /* This is defined in more than one ncurses header, for identification */
 string NCURSES_VERSION = "5.7";
 
-extern (C) nothrow
+extern (C) @nogc nothrow
 {
 
 /* types */
@@ -925,8 +925,6 @@ int vid_attr(chtype a, ...)
  * These functions are extensions - not in X/Open Curses.
  */
  //TODO Check
-alias int function(WINDOW *, void *) NCURSES_WINDOW_CB;
-alias int function(SCREEN *, void *) NCURSES_SCREEN_CB;
 
 bool is_term_resized(int lines, int columns);
 char* keybound(int keycode, int count);
@@ -1492,3 +1490,12 @@ body
 }
 
 }//end extern (C)
+
+// Things where @nogc would be needlessly limiting.
+extern (C) nothrow
+{
+
+alias int function(WINDOW *, void *) NCURSES_WINDOW_CB;
+alias int function(SCREEN *, void *) NCURSES_SCREEN_CB;
+
+}

@@ -719,8 +719,7 @@ int refresh()()
 int resetty();
 int reset_prog_mode();
 int reset_shell_mode();
-//TODO
-__gshared int function(int line, int function(WINDOW* win, int cols) init) ripoffline;
+int ripoffline(int line, int function(WINDOW* win, int cols) init);
 int savetty();
 int scanw(const char* fmt, ...);
 int scr_dump(char *filename);
@@ -917,7 +916,7 @@ int getpary(U:WINDOW*)(U win)
 /*
  * vid_attr() was implemented originally based on a draft of X/Open curses.
  */
-int vid_attr(chtype a, ...)
+int vid_attr()(chtype a, ...)
 {   return vidattr(a); }
 
 

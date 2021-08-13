@@ -1483,7 +1483,7 @@ out (result)
 {
   assert (result < KEY_DL, "Invalid value for KEY_F(n)");
 }
-body
+do
 {
   return KEY_F0 + n;
 }

@@ -303,6 +303,7 @@ immutable int _NEWINDEX = -1;
  */
 immutable size_t CCHARW_MAX = 5;
 
+align(1)
 struct cchar_t
 {
   attr_t attr;

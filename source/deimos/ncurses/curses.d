@@ -69,8 +69,8 @@ extern (C) @nogc nothrow
 {
 
 /* types */
-alias   c_ulong    chtype;
-alias   c_ulong    mmask_t;
+alias   uint    chtype;
+alias   uint    mmask_t;
 alias   chtype  attr_t;
 alias   int     OPTIONS;
 alias   void    SCREEN;
@@ -307,7 +307,9 @@ struct cchar_t
 {
   attr_t attr;
   wchar_t[CCHARW_MAX] chars;
+  int ext_color;
 }
+static assert (cchar_t.sizeof == 28);
 
 struct  WINDOW
 {

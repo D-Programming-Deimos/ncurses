@@ -1,6 +1,6 @@
 /****************************************************************************
- * Copyright 2020 Thomas E. Dickey                                          *
- * Copyright 1998-2001,2009 Free Software Foundation, Inc.                  *
+ * Copyright 2018,2020 Thomas E. Dickey                                     *
+ * Copyright 2009,2014 Free Software Foundation, Inc.                       *
  *                                                                          *
  * Permission is hereby granted, free of charge, to any person obtaining a  *
  * copy of this software and associated documentation files (the            *
@@ -26,43 +26,25 @@
  * sale, use or other dealings in this Software without prior written       *
  * authorization.                                                           *
  ****************************************************************************/
+/* $Id: ncurses_dll.h.in,v 1.17 2020/09/05 17:58:47 juergen Exp $ */
 
-/****************************************************************************
- *  Author: Zeyd M. Ben-Halim <zmbenhal@netcom.com> 1992,1995               *
- *     and: Eric S. Raymond <esr@snark.thyrsus.com>                         *
- ****************************************************************************/
+module deimos.ncurses_dll;
 
 /*
- * unctrl.h
- *
- * Display a printable version of a control character.
- * Control characters are displayed in caret notation (^x), DELETE is displayed
- * as ^?. Printable characters are displayed as is.
+ * For reentrant code, we map the various global variables into SCREEN by
+ * using functions to access them.
  */
+auto  NCURSES_PUBLIC_VAR(name)(name name) { pragma(inline, true); return "_nc_" ~ name; }
 
-/* $Id: unctrl.h.in,v 1.12 2020/02/02 23:34:34 tom Exp $ */
-
-#ifndef NCURSES_UNCTRL_H_incl
-#define NCURSES_UNCTRL_H_incl	1
-
-#undef  NCURSES_VERSION
-#define NCURSES_VERSION "6.3"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include <curses.h>
-
-#undef unctrl
-NCURSES_EXPORT(NCURSES_CONST char *) unctrl (chtype);
-
-#if 1
-NCURSES_EXPORT(NCURSES_CONST char *) NCURSES_SP_NAME(unctrl) (SCREEN*, chtype);
-#endif
-
-#ifdef __cplusplus
+// D porting note: this replaces NCURSES_WRAPPED_VAR and NCURSES_PUBLIC_VAR.
+mixin template NCURSES_D_VAR(type,string name)
+{
+	mixin("
+		extern __gshared /*NCURSES_IMPEXP*/ type " ~ NCURSES_PUBLIC_VAR(name) ~ "();
+		@property ref auto " ~ name ~ "() { pragma(inline, true); return " ~ NCURSES_PUBLIC_VAR(name) ~ "(); }
+	");
 }
-#endif
 
-#endif /* NCURSES_UNCTRL_H_incl */
+// D porting note: "export"/"extern" must be moved to the declaration, it cannot be added here.
+alias NCURSES_EXPORT(type) = /*NCURSES_IMPEXP*/ type /*NCURSES_API*/;
+alias NCURSES_EXPORT_VAR(type) = /*extern*/ /*NCURSES_IMPEXP*/ type;

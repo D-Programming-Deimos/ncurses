@@ -18,7 +18,7 @@ void main()
     initscr(); // hopefully you've seen all of this before.
     scope (exit)
         endwin();
-    nclear();
+    clear();
     noecho();
     cbreak();
     keypad(stdscr, true);

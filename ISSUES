@@ -1,7 +1,0 @@
-Mouse Events:
-	This one is a little tricky since most of this is system specific...
-	Some of the functions haven't been implemented yet...
-
-Other Files:
-	There are several other files listed in the include/ncurses folder.  things like termcap.h and a few that
-	look to be higher-level wrappers..  How much should be included?

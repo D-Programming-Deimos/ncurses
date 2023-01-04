@@ -1,5 +1,5 @@
 import std.conv : to;
-import deimos.ncurses.menu;
+import deimos.menu;
 
 enum CTRLD = 4;
 immutable char[][] choices = [  "Choice 1",

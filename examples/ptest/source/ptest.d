@@ -3,7 +3,7 @@ import std.conv : to;
 import std.string : toStringz;
 
 import deimos.ncurses;
-import deimos.ncurses.panel;
+import deimos.panel;
 
 string[] mod = ["test ", "TEST ", "(**) ", "*()* ", "<--> ", "LAST "];
 

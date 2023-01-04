@@ -1,4 +1,4 @@
-import deimos.ncurses.menu;
+import deimos.menu;
 import std.conv : to;
 
 const int CTRLD = 4;

@@ -1,5 +1,5 @@
 import std.string : toStringz;
-import deimos.ncurses.curses;
+import deimos.curses;
 
 void main()
 {

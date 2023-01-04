@@ -396,7 +396,7 @@ enum CCHARW_MAX      = 5;
 struct cchar_t
 {
     attr_t      attr;
-    wchar_t[CCHARW_MAX] chars;
+    wchar_t[CCHARW_MAX] chars = 0;
 version (all) {
     int         ext_color;      /* color pair, must be more than 16-bits */
 }

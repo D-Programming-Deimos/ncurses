@@ -1,0 +1,55 @@
+name: test
+on: [ push, pull_request ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ ubuntu-20.04, macos-12 ]
+        arch: [ x86, x86_64 ]
+        dc: [ dmd-2.100.2, ldc-1.30.0 ]
+        exclude:
+          # No x86 on macOS
+          - os: macos-12
+            arch: x86
+
+    runs-on: ${{ matrix.os }}
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - name: Install build dependencies (macOS)
+      if: ${{ matrix.os == 'macos-12' }}
+      run: brew install ncurses
+
+    - name: Install build dependencies (Linux/x86)
+      if: ${{ matrix.os == 'ubuntu-20.04' && matrix.arch == 'x86' }}
+      run: |
+        sudo dpkg --add-architecture i386
+        sudo apt-get update
+        sudo apt-get install -y binutils-i686-linux-gnu gcc-multilib libncurses-dev:i386 libz-dev:i386 libtinfo-dev:i386
+
+    - name: Install D compiler
+      uses: dlang-community/setup-dlang@43589c229861e1720e187a344c67dad1d9eefe4c
+      with:
+        compiler: ${{ matrix.dc }}
+
+    - name: Build examples
+      run: |
+        for d in $(find examples -maxdepth 1 -mindepth 1 -type d) ; do
+          echo "=== $d ==="
+          dub --root="$d" build --arch=${{ matrix.arch }}
+        done
+
+  syntax:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install D compiler
+      uses: dlang-community/setup-dlang@43589c229861e1720e187a344c67dad1d9eefe4c
+      with:
+        compiler: dmd-2.100.2
+
+    - name: Check syntax
+      run: dub lint --syntax-check

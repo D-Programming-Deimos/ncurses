@@ -23,7 +23,7 @@ int main()
     int c;
 
     initscr();
-    nclear();
+    clear();
     noecho();
     cbreak(); /* Line buffering disabled. pass on everything */
     startx = (80 - WIDTH) / 2;

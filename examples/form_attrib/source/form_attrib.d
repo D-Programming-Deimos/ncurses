@@ -1,4 +1,4 @@
-import deimos.ncurses.form;
+import deimos.form;
 import std.string;
 
 void main()

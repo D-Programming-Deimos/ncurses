@@ -1,6 +1,6 @@
 /****************************************************************************
- * Copyright 2020 Thomas E. Dickey                                          *
- * Copyright 1998-2001,2009 Free Software Foundation, Inc.                  *
+ * Copyright 2018-2020,2021 Thomas E. Dickey                                *
+ * Copyright 1998-2000,2001 Free Software Foundation, Inc.                  *
  *                                                                          *
  * Permission is hereby granted, free of charge, to any person obtaining a  *
  * copy of this software and associated documentation files (the            *
@@ -32,37 +32,42 @@
  *     and: Eric S. Raymond <esr@snark.thyrsus.com>                         *
  ****************************************************************************/
 
-/*
- * unctrl.h
- *
- * Display a printable version of a control character.
- * Control characters are displayed in caret notation (^x), DELETE is displayed
- * as ^?. Printable characters are displayed as is.
- */
+/* $Id: termcap.h.in,v 1.20 2021/06/17 21:26:02 tom Exp $ */
 
-/* $Id: unctrl.h.in,v 1.12 2020/02/02 23:34:34 tom Exp $ */
-
-#ifndef NCURSES_UNCTRL_H_incl
-#define NCURSES_UNCTRL_H_incl	1
+#ifndef NCURSES_TERMCAP_H_incl
+#define NCURSES_TERMCAP_H_incl	1
 
 #undef  NCURSES_VERSION
 #define NCURSES_VERSION "6.3"
 
+#include <ncurses_dll.h>
+
 #ifdef __cplusplus
-extern "C" {
-#endif
+extern "C"
+{
+#endif /* __cplusplus */
 
-#include <curses.h>
+#include <sys/types.h>
 
-#undef unctrl
-NCURSES_EXPORT(NCURSES_CONST char *) unctrl (chtype);
+#undef  NCURSES_OSPEED
+#define NCURSES_OSPEED short
 
-#if 1
-NCURSES_EXPORT(NCURSES_CONST char *) NCURSES_SP_NAME(unctrl) (SCREEN*, chtype);
+extern NCURSES_EXPORT_VAR(char) PC;
+extern NCURSES_EXPORT_VAR(char *) UP;
+extern NCURSES_EXPORT_VAR(char *) BC;
+extern NCURSES_EXPORT_VAR(NCURSES_OSPEED) ospeed;
+
+#if !defined(NCURSES_TERM_H_incl)
+extern NCURSES_EXPORT(char *) tgetstr (const char *, char **);
+extern NCURSES_EXPORT(char *) tgoto (const char *, int, int);
+extern NCURSES_EXPORT(int) tgetent (char *, const char *);
+extern NCURSES_EXPORT(int) tgetflag (const char *);
+extern NCURSES_EXPORT(int) tgetnum (const char *);
+extern NCURSES_EXPORT(int) tputs (const char *, int, int (*)(int));
 #endif
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* NCURSES_UNCTRL_H_incl */
+#endif /* NCURSES_TERMCAP_H_incl */

@@ -24,7 +24,7 @@ void main()
     auto rowcol = "This screen has %d rows and %d columns\n".toStringz;
     mvprintw(row - 2, 0, rowcol, row + 1, col + 1);
 
-    deimos.ncurses.printw(
+    printw(
         toStringz("Try resizing your window(if possible) and then run this program again"));
     refresh();
 

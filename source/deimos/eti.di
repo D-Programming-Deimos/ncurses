@@ -1,6 +1,6 @@
 /****************************************************************************
  * Copyright 2020 Thomas E. Dickey                                          *
- * Copyright 1998-2001,2009 Free Software Foundation, Inc.                  *
+ * Copyright 1998-2002,2003 Free Software Foundation, Inc.                  *
  *                                                                          *
  * Permission is hereby granted, free of charge, to any person obtaining a  *
  * copy of this software and associated documentation files (the            *
@@ -28,41 +28,25 @@
  ****************************************************************************/
 
 /****************************************************************************
- *  Author: Zeyd M. Ben-Halim <zmbenhal@netcom.com> 1992,1995               *
- *     and: Eric S. Raymond <esr@snark.thyrsus.com>                         *
+ *   Author:  Juergen Pfeifer, 1995,1997                                    *
  ****************************************************************************/
 
-/*
- * unctrl.h
- *
- * Display a printable version of a control character.
- * Control characters are displayed in caret notation (^x), DELETE is displayed
- * as ^?. Printable characters are displayed as is.
- */
+/* $Id: eti.h,v 1.9 2020/02/02 23:34:34 tom Exp $ */
 
-/* $Id: unctrl.h.in,v 1.12 2020/02/02 23:34:34 tom Exp $ */
+module deimos.eti;
 
-#ifndef NCURSES_UNCTRL_H_incl
-#define NCURSES_UNCTRL_H_incl	1
-
-#undef  NCURSES_VERSION
-#define NCURSES_VERSION "6.3"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include <curses.h>
-
-#undef unctrl
-NCURSES_EXPORT(NCURSES_CONST char *) unctrl (chtype);
-
-#if 1
-NCURSES_EXPORT(NCURSES_CONST char *) NCURSES_SP_NAME(unctrl) (SCREEN*, chtype);
-#endif
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* NCURSES_UNCTRL_H_incl */
+enum E_OK                    = (0);
+enum E_SYSTEM_ERROR          = (-1);
+enum E_BAD_ARGUMENT          = (-2);
+enum E_POSTED                = (-3);
+enum E_CONNECTED             = (-4);
+enum E_BAD_STATE             = (-5);
+enum E_NO_ROOM               = (-6);
+enum E_NOT_POSTED            = (-7);
+enum E_UNKNOWN_COMMAND       = (-8);
+enum E_NO_MATCH              = (-9);
+enum E_NOT_SELECTABLE        = (-10);
+enum E_NOT_CONNECTED         = (-11);
+enum E_REQUEST_DENIED        = (-12);
+enum E_INVALID_FIELD         = (-13);
+enum E_CURRENT               = (-14);

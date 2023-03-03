@@ -39,7 +39,7 @@ int main()
     foreach (ushort i; 0 .. 16)
     {
         attron(COLOR_PAIR(i));
-        mvwhline(stdscr, cast(int)(i % 8), w * (i / 8), to!size_t(' '), w); // chtype is a size_t by spec.
+        mvwhline(stdscr, cast(int)(i % 8), w * (i / 8), to!chtype(' '), w);
         attroff(COLOR_PAIR(i));
     }
 
@@ -48,7 +48,7 @@ int main()
     {
         attron(COLOR_PAIR(i));
         mvwhline(stdscr, cast(int)((i - 16) % 36), (2 * w + w * ((i - 16) / 36)),
-            to!size_t(' '), w);
+            to!chtype(' '), w);
         attroff(COLOR_PAIR(i));
     }
 
@@ -56,7 +56,7 @@ int main()
     foreach (ushort i; 232 .. 256)
     {
         attron(COLOR_PAIR(i));
-        mvwhline(stdscr, cast(int)(i - 232), (8 * w), to!size_t(' '), w);
+        mvwhline(stdscr, cast(int)(i - 232), (8 * w), to!chtype(' '), w);
         attroff(COLOR_PAIR(i));
     }
 

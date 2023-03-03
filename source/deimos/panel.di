@@ -37,64 +37,57 @@
 
 /* panel.h -- interface file for panels library */
 
-#ifndef NCURSES_PANEL_H_incl
-#define NCURSES_PANEL_H_incl 1
+module deimos.panel;
 
-#include <curses.h>
+extern (C):
 
-typedef struct panel
-#if !NCURSES_OPAQUE_PANEL
+public import deimos.curses;
+
+struct panel
+// #if !NCURSES_OPAQUE_PANEL
 {
   WINDOW *win;
-  struct panel *below;
-  struct panel *above;
-  NCURSES_CONST void *user;
+  panel *below;
+  panel *above;
+  NCURSES_CONST!void *user;
 }
-#endif /* !NCURSES_OPAQUE_PANEL */
-PANEL;
+// #endif /* !NCURSES_OPAQUE_PANEL */
+alias PANEL = panel;
 
-#if	defined(__cplusplus)
-extern "C" {
-#endif
-
-#if defined(BUILDING_PANEL)
-# define PANEL_IMPEXP NCURSES_EXPORT_GENERAL_EXPORT
-#else
-# define PANEL_IMPEXP NCURSES_EXPORT_GENERAL_IMPORT
-#endif
-
-#define PANEL_WRAPPED_VAR(type,name) extern PANEL_IMPEXP type NCURSES_PUBLIC_VAR(name)(void)
-
-#define PANEL_EXPORT(type) PANEL_IMPEXP type NCURSES_API
-#define PANEL_EXPORT_VAR(type) PANEL_IMPEXP type
-
-extern PANEL_EXPORT(WINDOW*) panel_window (const PANEL *);
-extern PANEL_EXPORT(void)    update_panels (void);
-extern PANEL_EXPORT(int)     hide_panel (PANEL *);
-extern PANEL_EXPORT(int)     show_panel (PANEL *);
-extern PANEL_EXPORT(int)     del_panel (PANEL *);
-extern PANEL_EXPORT(int)     top_panel (PANEL *);
-extern PANEL_EXPORT(int)     bottom_panel (PANEL *);
-extern PANEL_EXPORT(PANEL*)  new_panel (WINDOW *);
-extern PANEL_EXPORT(PANEL*)  panel_above (const PANEL *);
-extern PANEL_EXPORT(PANEL*)  panel_below (const PANEL *);
-extern PANEL_EXPORT(int)     set_panel_userptr (PANEL *, NCURSES_CONST void *);
-extern PANEL_EXPORT(NCURSES_CONST void*) panel_userptr (const PANEL *);
-extern PANEL_EXPORT(int)     move_panel (PANEL *, int, int);
-extern PANEL_EXPORT(int)     replace_panel (PANEL *,WINDOW *);
-extern PANEL_EXPORT(int)     panel_hidden (const PANEL *);
-
-#if NCURSES_SP_FUNCS
-extern PANEL_EXPORT(PANEL *) ground_panel(SCREEN *);
-extern PANEL_EXPORT(PANEL *) ceiling_panel(SCREEN *);
-
-extern PANEL_EXPORT(void)    NCURSES_SP_NAME(update_panels) (SCREEN*);
-#endif
-
-#if	defined(__cplusplus)
+// D porting note: this replaces PANEL_WRAPPED_VAR and NCURSES_PUBLIC_VAR.
+mixin template PANEL_D_VAR(type,string name)
+{
+	mixin("
+		extern /*PANEL_IMPEXP*/ type " ~ NCURSES_PUBLIC_VAR(name) ~ "();
+		@property auto " ~ name ~ "() { pragma(inline, true); return " ~ NCURSES_PUBLIC_VAR(name) ~ "(); }
+	");
 }
-#endif
 
-#endif /* NCURSES_PANEL_H_incl */
+// D porting note: "export"/"extern" must be moved to the declaration, it cannot be added here.
+alias PANEL_EXPORT(type) = /*PANEL_IMPEXP*/ type /*NCURSES_API*/;
+alias PANEL_EXPORT_VAR(type) = /*PANEL_IMPEXP*/ type;
+
+extern nothrow @nogc PANEL_EXPORT!(WINDOW*) panel_window (const(PANEL) *);
+extern nothrow @nogc PANEL_EXPORT!(void)    update_panels ();
+extern nothrow @nogc PANEL_EXPORT!(int)     hide_panel (PANEL *);
+extern nothrow @nogc PANEL_EXPORT!(int)     show_panel (PANEL *);
+extern nothrow @nogc PANEL_EXPORT!(int)     del_panel (PANEL *);
+extern nothrow @nogc PANEL_EXPORT!(int)     top_panel (PANEL *);
+extern nothrow @nogc PANEL_EXPORT!(int)     bottom_panel (PANEL *);
+extern nothrow @nogc PANEL_EXPORT!(PANEL*)  new_panel (WINDOW *);
+extern nothrow @nogc PANEL_EXPORT!(PANEL*)  panel_above (const(PANEL) *);
+extern nothrow @nogc PANEL_EXPORT!(PANEL*)  panel_below (const(PANEL) *);
+extern nothrow @nogc PANEL_EXPORT!(int)     set_panel_userptr (PANEL *, NCURSES_CONST!void *);
+extern nothrow @nogc PANEL_EXPORT!(NCURSES_CONST!void*) panel_userptr (const(PANEL) *);
+extern nothrow @nogc PANEL_EXPORT!(int)     move_panel (PANEL *, int, int);
+extern nothrow @nogc PANEL_EXPORT!(int)     replace_panel (PANEL *,WINDOW *);
+extern nothrow @nogc PANEL_EXPORT!(int)     panel_hidden (const(PANEL) *);
+
+static if (NCURSES_SP_FUNCS) {
+extern nothrow @nogc PANEL_EXPORT!(PANEL *) ground_panel(SCREEN *);
+extern nothrow @nogc PANEL_EXPORT!(PANEL *) ceiling_panel(SCREEN *);
+
+extern nothrow @nogc PANEL_EXPORT!(void)    NCURSES_SP_NAME(update_panels) (SCREEN*);
+}
 
 /* end of panel.h */

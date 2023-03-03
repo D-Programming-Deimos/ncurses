@@ -1,5 +1,5 @@
 import std.conv : to;
-import deimos.ncurses.menu;
+import deimos.menu;
 
 const int CTRLD = 4;
 

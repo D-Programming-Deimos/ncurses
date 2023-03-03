@@ -1,0 +1,47 @@
+name "ncurses"
+description "Interface to the C ncurses library"
+homepage "https://github.com/D-Programming-Deimos/ncurses"
+authors \
+        "Jon \"ylixir\" Allen" \
+        "Dejan Lekic" \
+        "Jude \"1100110\" Young" \
+        "Vladimir Panteleev"
+license "ncurses"
+targetType "sourceLibrary"  # .di files only
+targetName "ncurses-d"
+
+# Howebrew installs libncurses here:
+lflags "-L/usr/local/opt/ncurses/lib" platform="osx"
+
+configuration "minimal" {
+	libs "ncursesw"
+}
+
+configuration "panels" {
+	libs "ncursesw" "panelw"
+
+}
+configuration "full" {
+	libs "ncursesw" "panelw" "menuw" "formw"
+}
+
+subPackage "examples/acs_vars"
+subPackage "examples/hellounicode"
+subPackage "examples/hello_world"
+subPackage "examples/key_code"
+subPackage "examples/mouse_menu"
+subPackage "examples/other_border"
+subPackage "examples/printbold"
+subPackage "examples/printw_example"
+subPackage "examples/simple_color"
+subPackage "examples/simple_key"
+subPackage "examples/simplespectrum"
+subPackage "examples/temp_leave"
+subPackage "examples/win_border"
+subPackage "examples/with_chgat"
+subPackage "examples/form_attrib"
+subPackage "examples/menu_attrib"
+subPackage "examples/menu_scroll"
+subPackage "examples/menu_simple"
+subPackage "examples/panel_simple"
+subPackage "examples/ptest"

@@ -1,4 +1,4 @@
-import deimos.ncurses.panel;
+import deimos.panel;
 
 int main()
 {

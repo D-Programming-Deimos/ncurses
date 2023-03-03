@@ -42,27 +42,14 @@
 
 /* $Id: unctrl.h.in,v 1.12 2020/02/02 23:34:34 tom Exp $ */
 
-#ifndef NCURSES_UNCTRL_H_incl
-#define NCURSES_UNCTRL_H_incl	1
+module deimos.unctrl;
 
-#undef  NCURSES_VERSION
-#define NCURSES_VERSION "6.3"
+enum NCURSES_VERSION = "6.3";
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+import deimos.curses;
 
-#include <curses.h>
+NCURSES_EXPORT!(NCURSES_CONST!char *) unctrl (chtype);
 
-#undef unctrl
-NCURSES_EXPORT(NCURSES_CONST char *) unctrl (chtype);
-
-#if 1
-NCURSES_EXPORT(NCURSES_CONST char *) NCURSES_SP_NAME(unctrl) (SCREEN*, chtype);
-#endif
-
-#ifdef __cplusplus
+version (all) {
+NCURSES_EXPORT!(NCURSES_CONST!char *) unctrl_sp (SCREEN*, chtype);
 }
-#endif
-
-#endif /* NCURSES_UNCTRL_H_incl */

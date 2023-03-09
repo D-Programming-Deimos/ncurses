@@ -25,6 +25,7 @@ jobs:
     - name: Install build dependencies (Linux/x86)
       if: ${{ matrix.os == 'ubuntu-20.04' && matrix.arch == 'x86' }}
       run: |
+        sudo apt-get update
         sudo dpkg --add-architecture i386
         sudo apt-get update
         sudo apt-get install -y binutils-i686-linux-gnu gcc-multilib libncurses-dev:i386 libz-dev:i386 libtinfo-dev:i386

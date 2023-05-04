@@ -1024,7 +1024,7 @@ void getsyx(Y,X)(ref Y y,ref X x) {
                         }
                     }
 
-void getsyx(Y,X)(ref Y y,ref X x) {
+void setsyx(Y,X)(Y y,X x) {
                              pragma(inline, true);
                              if (newscr) {
                              if ((y) == -1 && (x) == -1)

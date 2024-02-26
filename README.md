@@ -9,7 +9,7 @@ The bindings are implemented as source-only (`.di` files), and do not need to be
 
 ## Status
 
-The main C header files are up to date with ncurses 6.3, as it is [configured and packaged by Arch Linux](https://github.com/archlinux/svntogit-packages/blob/packages/ncurses/trunk/PKGBUILD).
+The main C header files are up to date with ncurses 6.3, as it is [configured and packaged by Arch Linux](https://gitlab.archlinux.org/archlinux/packaging/packages/ncurses/blob/main/PKGBUILD).
 
 C++ header files, and the termcap-related header files, are not currently translated.
 
